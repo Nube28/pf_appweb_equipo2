@@ -3,31 +3,46 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfil Nombre</title>
     <link rel="stylesheet" href="..\styles\general.css" type="text/css" />
     <link rel="stylesheet" href="..\styles\inicio-inicio.css" type="text/css" />
-    <title>Nombre publicacion</title>
   </head>
   <body>
     <main>
       <nav>
-        <ul>
-          <li>
-            <a href="pagina-inicial.html"
-              ><img src="" alt="Logo" height="200px"
-            /></a>
-          </li>
-          <li>
-            <a href="perfil">
-              <img src="" alt="Foto de Perfil" height="200px" /> Perfil</a
-            >
-          </li>
-        </ul>
+        <div class="nav">
+          <ul>
+            <li>
+              <a href="pagina-inicial.html"
+                ><img src="" alt="Logo" height="200px"
+              /></a>
+            </li>
+            <li>
+              <a href="perfil">
+                <img src="" alt="Foto de Perfil" height="200px" /> Perfil</a
+              >
+            </li>
+          </ul>
+        </div>
       </nav>
-      <header></header>
+      <header>
+        <div class="perfil-usuario">
+          <img src="" alt="Foto de Perfil" height="200px" />
+          <h1>Nombre de Usuario</h1>
+        </div>
+      </header>
+      <section>
+        <div class="secciones">
+          <a href="perfil-fijadas.html">Publicaciones Fijadas</a>
+          <a href="perfil-normales.html">Publicaciones Recientes</a>
+        </div>
+      </section>
       <section>
         <div class="perfil">
           <img src="" alt="Foto de Perfil" height="200px" />
           <h3>Nombre de Usuario</h3>
+          <img src="" alt="Pin de fijado" />
+          <p>(Fijado)</p>
           <p>Publicado el dd/mm/yyyy 00:00</p>
           <p>Ultima edición: dd/mm/yyyy 00:00</p>
         </div>
@@ -61,27 +76,17 @@
             <p>Comentario</p>
             <p>Publicado el dd/mm/yyyy 00:00</p>
             <br />
-            <a href="">Responder</a>
           </div>
         </div>
       </section>
-      <section>
-        <div class="realizar-comentario">
-          <form action="">
-            <fieldset>
-              <label for="comentario">Comentario:</label>
-              <textarea
-                id="comentario"
-                name="comentario"
-                class="textarea"
-              ></textarea>
-              <br />
-              <button type="submit" class="boton">Comentar</button>
-            </fieldset>
-          </form>
-        </div>
-      </section>
-      <footer></footer>
+      <footer>
+        <a href="crear-publicacion.html"
+          ><img
+            src="..\imgs\agregar_publicacion.svg"
+            alt="Agregar publicacion"
+            height="200px"
+        /></a>
+      </footer>
     </main>
   </body>
 </html>
