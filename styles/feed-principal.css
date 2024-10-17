@@ -1,0 +1,211 @@
+
+/* se usa en TODAS las clases (en algunas se sobreescribe)
+hace que sea rosita y con los bordes bonitos
+*/
+main {
+  background-color: #d8cef0;
+  padding: 2rem;
+  margin: 2rem 8rem;
+  border-radius: 24px;
+  display: block;
+  box-sizing: border-box;
+}
+
+/* Se usa en pagina-inicial 
+Modifica los subitulos (principalemente h2)
+*/
+.subtitulo{
+  text-align: left;
+  margin: 2rem;
+}
+
+/* se usa en pagina-inicial
+hace que sus hijos se acomoden automaticamente y cuando ya no caben se va para abajo 
+*/
+.fijados-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 1rem;
+  max-width: 100%;
+}
+
+/* se usa en pagina-inicial
+hace falta decir que hace esto?
+*/
+.publicacion-fijada {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 1rem;
+  width: 100%; 
+  /* esto separa las cosas (no se como) */
+  box-sizing: border-box; 
+}
+
+/* se usa en pagina-inicial
+Hace que se muestre a la derecha el cosito ese pin
+*/
+.publicacion-fijada img {
+  float: right;
+}
+
+/* se usa en pagina-inicial
+Hace que se muestre a la derecha el cosito ese pin por fijar
+*/
+.publicacion img{
+  float: right;
+}
+
+/* se usa en pagina-inicial
+hace que se muestere desvanecido el color del pin por fijar
+*/
+.pin-por-fijar{
+  opacity: 40%;
+}
+
+/* se usa en pagina-inicial
+hace que sus hijos se acomoden automaticamente y cuando ya no caben se va para abajo 
+*/
+.publicaciones-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 1rem;
+  max-width: 100%;
+}
+
+/* se usa en pagina-inicial
+hace falta decir que hace esto?
+*/
+.publicacion {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 1rem;
+  width: 100%; 
+  /* esto separa las cosas (no se como) */
+  box-sizing: border-box; 
+}
+
+/* se usa en pagina-inicial
+Modifica la portada par aque quede linda
+*/
+.portada-publicacion{
+  width: 100%;
+  height: 25rem;
+  border-radius: 1rem;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+/* se usa en pagina-inicial
+hace que el aside se ponga siempre en la esquina de abajo a la izq
+*/
+aside {
+  position: fixed; 
+  bottom: 1rem;    
+  right: 1rem;     
+  z-index: 1000; 
+}
+
+/* se usa en pagina-inicial
+hace que el boton sea pequeño y ya 
+*/
+.boton-agregar-publicacion{
+  width: 5rem;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+/* se usa en perfil
+contenedor de la foto y el nombre de perfil
+*/
+.foto-y-nombre-container{
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.foto-y-nombre-container h1{
+  font-size: 4rem;
+}
+
+/* se usa en perfil
+hace que la foto de perfil sea redonda jejejje
+*/
+.foto-perfil-grande{
+  width: 10rem;
+  height: 10rem;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.undertale{
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+@media (max-width: 768px) {
+  main {
+    margin: 2rem auto;
+    padding: 1rem;
+  }
+  
+  .fijados-container,
+  .publicaciones-container {
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); /* Reduce el tamaño mínimo */
+  }
+
+  aside {
+    position: static; 
+    width: auto;     
+    margin: 1.2rem auto -2rem auto; 
+    text-align: center;   
+  }
+
+  /* Haz que el aside aparezca antes del main */
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  main {
+    order: 2; 
+  }
+
+  aside {
+    order: 1; 
+  }
+
+  .foto-y-nombre-container{
+    margin-top: 1rem;
+    display: inline;
+    text-align: center;
+    gap: 2rem;
+  }
+  
+
+  .foto-y-nombre-container h1{
+    font-size: 2rem;
+  }
+  
+}
+
+@media (max-width: 320px) {
+  main {
+    margin: 1rem; 
+    padding: 0.5rem; 
+  }
+
+  .fijados-container,
+  .publicaciones-container {
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); /* Reduce el tamaño mínimo */
+  }
+
+  .portada-publicacion {
+    height: 15rem; 
+  }
+
+  .foto-perfil-grande {
+    width: 8rem;
+    height: 8rem; 
+  }
+}
