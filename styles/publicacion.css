@@ -190,6 +190,14 @@ main {
   background-color: #350865;
 }
 
+.marg{
+  margin: 1rem;
+}
+
+.fiel-crear-container{
+  padding: 1rem;
+}
+
 @media (max-width: 768px) {
   main {
     margin: 2rem 1rem;
