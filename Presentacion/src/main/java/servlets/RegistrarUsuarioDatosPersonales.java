@@ -44,7 +44,7 @@ public class RegistrarUsuarioDatosPersonales extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String usuario=request.getParameter("usuario");
+        String usuario=request.getParameter("nombre");
         String email=request.getParameter("email");
         String contra=request.getParameter("contra");
         

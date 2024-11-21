@@ -8,11 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-/**
- *
- * @author Héctor Francisco Báez Luque
- * @author Diego Alcantar Acosta
- */
 public class Conexion implements IConexion{
 
    /**
