@@ -11,15 +11,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar Usuario</title>
-    <link rel="stylesheet" href="..\styles\general.css" type="text/css">
-    <link rel="stylesheet" href="..\styles\registro.css" type="text/css">
+    <link rel="stylesheet" href="styles\general.css" type="text/css">
+    <link rel="stylesheet" href="styles\registro.css" type="text/css">
 </head>
 <body>
     <main> 
         <header>
             <h1 class="texto"> Registrar Usuario</h1>
         </header>
-        <form action="index.jsp">
+        <form action="RegistrarUsuarioDatosUbicacion" method="POST">
             <fieldset>
                 <label for="estado" class="texto">Estado:</label>
                 <select id="estado" name="estado" class="escribir">

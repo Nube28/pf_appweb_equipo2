@@ -165,6 +165,24 @@ public class Usuario implements Serializable {
         this.genero = genero;
     }
 
+    public Municipio getMunicipio() {
+        return municipio;
+    }
+
+    public void setMunicipio(Municipio municipio) {
+        this.municipio = municipio;
+    }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+    
+    
+
     @Override
     public String toString() {
         return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno + ", correo=" + correo + ", contrasenia=" + contrasenia + ", telefono=" + telefono + ", fechaNacimiento=" + fechaNacimiento + ", genero=" + genero + ", posts=" + posts + ", comentarios=" + comentarios + ", municipio=" + municipio + ", estado=" + estado + '}';

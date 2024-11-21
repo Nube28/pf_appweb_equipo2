@@ -46,15 +46,15 @@ public class RegistrarUsuarioDatosBasicos extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session=request.getSession();
-        String usuario=request.getParameter("usuario");
+        String nombre=request.getParameter("nombre");
         String email=request.getParameter("email");
         String contra=request.getParameter("contra");
-        session.setAttribute("usuario", usuario);
+        session.setAttribute("nombre", nombre);
         session.setAttribute("email", email);
         session.setAttribute("contra", contra);
         getServletContext().getRequestDispatcher("/registrarUsuarioDatosPersonales.jsp").forward(request, response);
         
-        System.out.println(usuario);
+        
     }
 
     /**
