@@ -8,7 +8,6 @@ import entidades.Usuario;
 import excepciones.PersistenciaException;
 import interfaces.IUsuarioDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -63,8 +62,8 @@ public class IniciarSesion extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("id", usuario.getId());
                 session.setAttribute("usuarioLogueado", usuario);
-                request.getSession().setAttribute("esAdmin", usuario.getTipo());
-                getServletContext().getRequestDispatcher("/paginaInicial.jsp").forward(request, response);
+                session.setAttribute("esAdmin", usuario.getTipo());
+                getServletContext().getRequestDispatcher("/PaginaInicial").forward(request, response);
             }else{
                 request.setAttribute("errorMensaje", "No se encontró el usuario con esas características.");
                 getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
