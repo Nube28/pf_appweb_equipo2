@@ -23,21 +23,11 @@ public class nuab {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws PersistenciaException {
-        Date date=new Date();
-    Usuario u = new Usuario(
-        "oas",
-        "apellido",
-        "apellido2",
-        "SASA@ola.com",
-        "asd",
-        "2213as",
-        date, // Aquí pasamos el Date
-        "asdasd"
-    );
+        Post p = new Post(new Date(), "as", "conetendo", new Date());
+        
+        PostDAO aO = new PostDAO();
+        System.out.println(aO.consultarPostPorId(1l));
+        
+    }
 
-    UsuarioDAO aO = new UsuarioDAO();
-    aO.registrarUsuario(u);
-    System.out.println("Se registró el usuario correctamente.");
-}
-    
 }

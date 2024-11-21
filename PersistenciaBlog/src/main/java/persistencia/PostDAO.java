@@ -107,6 +107,31 @@ public class PostDAO implements IPostDAO {
     }
 
     @Override
+    public Usuario consultarUsuarioPorPost(Post post) throws PersistenciaException {
+        EntityManager em = conexion.abrir();
+        em.getTransaction().begin();
+
+        try {
+            Usuario usuario = em.createQuery(
+                    "SELECT p.usuario FROM Post p WHERE p.id = :idPost",
+                    Usuario.class)
+                    .setParameter("idPost", post.getId())
+                    .getSingleResult();
+            em.getTransaction().commit();
+            return usuario;
+        } catch (NoResultException e) {
+            em.getTransaction().rollback();
+            throw new PersistenciaException("No se encontró un usuario asociado al post proporcionado.", e);
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            e.printStackTrace();
+            throw new PersistenciaException("Error al consultar el usuario del post.", e);
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
     public Post consultarPostPorId(Long id) throws PersistenciaException {
         EntityManager em = conexion.abrir();
         em.getTransaction().begin();
