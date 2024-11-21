@@ -1,6 +1,6 @@
+servlets\RegistrarUsuarioDatosPersonales.class
+servlets\VerPublicacion.class
 servlets\RegistrarUsuarioDatosBasicos.class
 com\mycompany\persistenciablog2\resources\JakartaEE10Resource.class
 servlets\RegistrarUsuarioDatosUbicacion.class
-servlets\RegistrarUsuarioDatosPersonales.class
 com\mycompany\persistenciablog2\JakartaRestConfiguration.class
-servlets\VerPublicacion.class

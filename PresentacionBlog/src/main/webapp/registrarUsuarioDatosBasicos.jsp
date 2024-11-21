@@ -21,8 +21,12 @@
         </header>
         <form action="RegistrarUsuarioDatosBasicos" method="POST">
             <fieldset>
-                <label for="nombre" class="texto">Nombre Completo:</label>
+                <label for="nombre" class="texto">Nombre:</label>
                 <input type="text" name="nombre" class="escribir"> 
+                <label for="apellido-paterno" class="texto">Apellido Paterno:</label>
+                <input type="text" name="apellido-paterno" class="escribir"> 
+                <label for="apellido-materno" class="texto">Apellido Materno:</label>
+                <input type="text" name="apellido-materno" class="escribir"> 
                 <label for="email" class="texto">Email:</label>
                 <input type="email" name="email" class="escribir">
                 <label for="contra" class="texto">Contraseña:</label>
