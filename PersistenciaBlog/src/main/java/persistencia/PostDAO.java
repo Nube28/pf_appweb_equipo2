@@ -18,13 +18,13 @@ import javax.persistence.NoResultException;
  *
  * @author USER
  */
-public class PostDAO implements IPostDAO{
+public class PostDAO implements IPostDAO {
+
     private final IConexion conexion;
 
     public PostDAO() {
         conexion = new Conexion();
     }
-    
 
     @Override
     public boolean hacerPost(Post post) throws PersistenciaException {
@@ -105,5 +105,30 @@ public class PostDAO implements IPostDAO{
             em.close();
         }
     }
-    
+
+    @Override
+    public Post consultarPostPorId(Long id) throws PersistenciaException {
+        EntityManager em = conexion.abrir();
+        em.getTransaction().begin();
+
+        try {
+            Post post = em.createQuery(
+                    "SELECT p FROM Post p WHERE p.id = :id",
+                    Post.class)
+                    .setParameter("id", id)
+                    .getSingleResult();
+            em.getTransaction().commit();
+            return post;
+        } catch (NoResultException e) {
+            em.getTransaction().rollback();
+            throw new PersistenciaException("No se encontró ningún post con el ID proporcionado.", e);
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            e.printStackTrace();
+            throw new PersistenciaException("Error al consultar el post por ID.", e);
+        } finally {
+            em.close();
+        }
+    }
+
 }
