@@ -41,7 +41,7 @@
                 </select>
             </fieldset>
             <footer>
-                <button type="submit" class="boton" formaction="registrar-usuario-datos-personales.jsp">Regresar</button>
+                <button type="submit" class="boton" formaction="index.jsp">Regresar</button>
                 <button type="submit" class="boton">Continuar</button>
             </footer>
         </form>

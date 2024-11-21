@@ -3,6 +3,10 @@ body{
     display: flex;
     justify-content: center;
 }
+
+.advertencia{
+    color: #F8F32B;
+}
 main{
     background-color: #49108B;
     padding: 1rem;

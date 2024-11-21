@@ -10,6 +10,7 @@ import entidades.Usuario;
 import excepciones.PersistenciaException;
 import interfaces.IUsuarioDAO;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -78,6 +79,25 @@ public class UsuarioDAO implements IUsuarioDAO{
             em.close();
         }
     }
+    
+    @Override
+    public Usuario encontrarUsuarioPorCorreoYContrasena(String correo, String contrasenia) throws PersistenciaException {
+    EntityManager em = conexion.abrir();
+    try {
+        String jpql = "SELECT u FROM Usuario u WHERE u.correo = :correo AND u.contrasenia = :contrasenia";
+        TypedQuery<Usuario> query = em.createQuery(jpql, Usuario.class);
+        query.setParameter("correo", correo);
+        query.setParameter("contrasenia", contrasenia);
+        Usuario usuario = query.getResultList().stream().findFirst().orElse(null);
+
+        return usuario;
+    } catch (Exception e) {
+        e.printStackTrace();
+        throw new PersistenciaException("Error al encontrar el usuario por correo y contraseña", e);
+    } finally {
+        em.close();
+    }
+}
 
     
 }

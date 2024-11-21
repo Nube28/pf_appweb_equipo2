@@ -19,4 +19,6 @@ public interface IUsuarioDAO {
     
     public boolean eliminarUsuario(Usuario usuario) throws PersistenciaException;
     
+    public Usuario encontrarUsuarioPorCorreoYContrasena(String correo, String contrasena) throws PersistenciaException;
+    
 }

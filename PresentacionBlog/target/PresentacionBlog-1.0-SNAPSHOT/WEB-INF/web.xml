@@ -4,9 +4,17 @@
         <servlet-name>VerPublicacion</servlet-name>
         <servlet-class>servlets.VerPublicacion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>IniciarSesion</servlet-name>
+        <servlet-class>servlets.IniciarSesion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>VerPublicacion</servlet-name>
         <url-pattern>/VerPublicacion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IniciarSesion</servlet-name>
+        <url-pattern>/IniciarSesion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
