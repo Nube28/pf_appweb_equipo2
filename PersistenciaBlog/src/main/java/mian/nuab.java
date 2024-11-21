@@ -23,7 +23,7 @@ public class nuab {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws PersistenciaException {
-
+        Date date=new Date();
     Usuario u = new Usuario(
         "oas",
         "apellido",
@@ -31,7 +31,7 @@ public class nuab {
         "SASA@ola.com",
         "asd",
         "2213as",
-        null, // Aquí pasamos el Date
+        date, // Aquí pasamos el Date
         "asdasd"
     );
 
