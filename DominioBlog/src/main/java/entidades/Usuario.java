@@ -32,6 +32,7 @@ public class Usuario implements Serializable {
     @Column(name="nombre",nullable = false)
     private String nombre;
     
+    
     @Column(name="apellidoPaterno",nullable = false)
     private String apellidoPaterno;
     

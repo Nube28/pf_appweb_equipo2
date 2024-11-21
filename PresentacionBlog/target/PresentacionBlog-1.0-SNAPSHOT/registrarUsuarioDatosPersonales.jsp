@@ -29,11 +29,11 @@
 
                 <label for="genero" class="texto">Genero:</label>
                 <div>
-                    <input type="radio" name="genero" value="hombre" class="radio-button"> 
+                    <input type="radio" name="genero" value="hombre" class="radio-button" required> 
                     <label for="hombre" class="texto">Hombre</label>
-                    <input type="radio" name="genero" value="mujer" class="radio-button"> 
+                    <input type="radio" name="genero" value="mujer" class="radio-button" required> 
                     <label for="mujer" class="texto">Mujer</label>
-                    <input type="radio" name="genero" value="otro" class="radio-button"> 
+                    <input type="radio" name="genero" value="otro" class="radio-button" required> 
                     <label for="otro" class="texto">Otro</label>
                 </div>
                 <label for="avatar" class="texto">Avatar:</label>

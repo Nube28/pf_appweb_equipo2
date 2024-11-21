@@ -18,7 +18,7 @@ import javax.persistence.Table;
  * @author USER
  */
 @Entity
-@Table(name="Municipio")
+@Table(name="Municipios")
 public class Municipio implements Serializable {
 
     @Id

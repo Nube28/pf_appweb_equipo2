@@ -45,16 +45,26 @@ public class RegistrarUsuarioDatosBasicos extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session=request.getSession();
-        String nombre=request.getParameter("nombre");
-        String email=request.getParameter("email");
-        String contra=request.getParameter("contra");
-        session.setAttribute("nombre", nombre);
-        session.setAttribute("email", email);
-        session.setAttribute("contra", contra);
-        getServletContext().getRequestDispatcher("/registrarUsuarioDatosPersonales.jsp").forward(request, response);
-        
-        
+        HttpSession session = request.getSession();
+        String nombre = request.getParameter("nombre");
+        String apellidoPaterno = request.getParameter("apellido-paterno");
+        String apellidoMaterno = request.getParameter("apellido-materno");
+        String email = request.getParameter("email");
+        String nombreUsuario = request.getParameter("nombreUsuario");
+        String contra = request.getParameter("contra");
+        String confirmacontra = request.getParameter("confirmar-contra");
+        if (!confirmacontra.equalsIgnoreCase(contra)) {
+            request.setAttribute("errorMensaje", "Las contraseñas no coinciden. Inténtalo de nuevo.");
+            getServletContext().getRequestDispatcher("/registrarUsuarioDatosBasicos.jsp").forward(request, response);
+        } else {
+            session.setAttribute("nombre", nombre);
+            session.setAttribute("apellidoPaterno", apellidoPaterno);
+            session.setAttribute("apellidoMaterno", apellidoMaterno);
+            session.setAttribute("email", email);
+            session.setAttribute("nombreUsuario", nombreUsuario);
+            session.setAttribute("contra", contra);
+            getServletContext().getRequestDispatcher("/registrarUsuarioDatosPersonales.jsp").forward(request, response);
+        }
     }
 
     /**
