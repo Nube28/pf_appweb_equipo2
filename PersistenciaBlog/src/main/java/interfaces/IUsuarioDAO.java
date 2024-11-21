@@ -21,4 +21,7 @@ public interface IUsuarioDAO {
     
     public Usuario encontrarUsuarioPorCorreoYContrasena(String correo, String contrasena) throws PersistenciaException;
     
+    public boolean comprobarUsuarioExistente(String correo)throws PersistenciaException;
+    
+    
 }

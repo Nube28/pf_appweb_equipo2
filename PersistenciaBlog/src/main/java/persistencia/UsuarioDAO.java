@@ -99,5 +99,25 @@ public class UsuarioDAO implements IUsuarioDAO{
     }
 }
 
+    @Override
+    public boolean comprobarUsuarioExistente(String correo) throws PersistenciaException {
+        EntityManager em = conexion.abrir();
+        try{
+            String jpql = "SELECT u FROM Usuario u WHERE u.correo = :correo";
+        TypedQuery<Usuario> query = em.createQuery(jpql, Usuario.class);
+        query.setParameter("correo", correo);
+        Usuario usuario = query.getResultList().stream().findFirst().orElse(null);
+        if(usuario==null){
+            return false;
+        }else{
+            return true;
+        }
+        }catch(Exception e){
+            e.printStackTrace();
+        throw new PersistenciaException("Error", e);
+        }
+        
+    }
+
     
 }

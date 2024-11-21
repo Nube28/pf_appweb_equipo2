@@ -37,16 +37,7 @@
                     <label for="confirmar-contra" class="texto">Confirmar contraseña:</label>
                     <input type="password" name="confirmar-contra" class="escribir contraseña" required>
                 </fieldset>
-                <%
-                    String errorMensaje = (String) request.getAttribute("errorMensaje");
-                    if (errorMensaje != null) {
-                %>
-                <div class="advertencia">
-                    <p><%= errorMensaje%></p>
-                </div>
-                <%
-                    }
-                %>
+                <%@include file="/advertencia.jspf"%>
                 <footer>
                     <button type="submit" class="boton">Continuar</button>
                     <p class="texto">Si ya tienes una cuenta:</p>

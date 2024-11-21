@@ -13,6 +13,7 @@ import interfaces.IPostDAO;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -153,6 +154,23 @@ public class PostDAO implements IPostDAO {
             throw new PersistenciaException("Error al consultar el post por ID.", e);
         } finally {
             em.close();
+        }
+    }
+
+    @Override
+    public List<Post> consultarPostMasRecientes() throws PersistenciaException {
+        EntityManager em = conexion.abrir();
+        em.getTransaction().begin();
+
+        try {
+            String jpql= "SELECT p FROM posts p ORDER BY p.fecha DESC";
+            TypedQuery<Post> query = em.createQuery(jpql,Post.class);
+            query.setMaxResults(10);
+            return query.getResultList();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            e.printStackTrace();
+            throw new PersistenciaException("Error al consultar el post por ID.", e);
         }
     }
 

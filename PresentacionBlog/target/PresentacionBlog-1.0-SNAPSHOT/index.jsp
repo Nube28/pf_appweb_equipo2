@@ -27,16 +27,7 @@
                 <label for="contra" class="texto">Contraseña:</label>
                 <input type="password" id="contra" name="contra" class="escribir contraseña">
             </fieldset>
-            <%
-                String errorMensaje = (String) request.getAttribute("errorMensaje");
-                if (errorMensaje != null) {
-            %>
-            <div class="advertencia">
-                <p><%= errorMensaje%></p>
-            </div>
-            <%
-                }
-            %>
+            <%@include file="/advertencia.jspf"%>
             <footer>
                 <button type="submit" class="boton">Iniciar Sesión</button>
                 <p class="texto">¿No tienes una cuenta?</p>
