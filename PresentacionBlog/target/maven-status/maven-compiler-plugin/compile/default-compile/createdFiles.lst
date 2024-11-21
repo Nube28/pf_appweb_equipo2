@@ -1,4 +1,5 @@
 servlets\IniciarSesion.class
+servlets\PaginaInicial.class
 servlets\RegistrarUsuarioDatosPersonales.class
 servlets\VerPublicacion.class
 servlets\RegistrarUsuarioDatosBasicos.class

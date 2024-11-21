@@ -4,6 +4,9 @@
  */
 package servlets;
 
+import entidades.Post;
+import excepciones.PersistenciaException;
+import interfaces.IPostDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,6 +14,10 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import persistencia.PostDAO;
 
 /**
  *
@@ -19,6 +26,7 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet(name = "PaginaInicial", urlPatterns = {"/PaginaInicial"})
 public class PaginaInicial extends HttpServlet {
 
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -32,7 +40,18 @@ public class PaginaInicial extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        IPostDAO postDAO = new PostDAO();
+        try {
+            List<Post> postsRecientes = postDAO.consultarPostMasRecientes();
+            List<Post> postsRecientesFijados = postDAO.consultarPostFijadosMasRecientes();
+            
+            request.setAttribute("postsRecientes", postsRecientes);
+            request.setAttribute("postsRecientesFijados", postsRecientesFijados);
+            
+            request.getRequestDispatcher("/paginaInicial.jsp").forward(request, response);
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(PaginaInicial.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

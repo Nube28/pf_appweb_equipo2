@@ -38,7 +38,7 @@ public class Post implements Serializable {
     @Column(name="contenido",nullable = false)
     private String contenido;
     
-    @Column(name="fechaHoraEdicion",nullable = false)
+    @Column(name="fechaHoraEdicion",nullable = true)
     private Date fechaHoraEdicion;
     
     @Column(name="urlImagenPortada",nullable = false)
@@ -46,6 +46,9 @@ public class Post implements Serializable {
     
     @Column(name="urlImagen",nullable = true)
     private String urlImagen;
+    
+    @Column(name="fijado",nullable = false)
+    private Boolean fijado;
     
     @ManyToOne
     @JoinColumn(name = "usuario_id")
@@ -57,16 +60,17 @@ public class Post implements Serializable {
     public Post() {
     }
 
-    public Post(Date fechaHoraCreacion, String titulo, String contenido, Date fechaHoraEdicion, String urlImagenPortada, String urlImagen) {
+    public Post(Date fechaHoraCreacion, String titulo, String contenido, Date fechaHoraEdicion, String urlImagenPortada, String urlImagen, Boolean fijado) {
         this.fechaHoraCreacion = fechaHoraCreacion;
         this.titulo = titulo;
         this.contenido = contenido;
         this.fechaHoraEdicion = fechaHoraEdicion;
         this.urlImagenPortada = urlImagenPortada;
         this.urlImagen = urlImagen;
+        this.fijado = fijado;
     }
 
-    public Post(Long id, Date fechaHoraCreacion, String titulo, String contenido, Date fechaHoraEdicion, String urlImagenPortada, String urlImagen) {
+    public Post(Long id, Date fechaHoraCreacion, String titulo, String contenido, Date fechaHoraEdicion, String urlImagenPortada, String urlImagen, Boolean fijado) {
         this.id = id;
         this.fechaHoraCreacion = fechaHoraCreacion;
         this.titulo = titulo;
@@ -74,9 +78,9 @@ public class Post implements Serializable {
         this.fechaHoraEdicion = fechaHoraEdicion;
         this.urlImagenPortada = urlImagenPortada;
         this.urlImagen = urlImagen;
+        this.fijado = fijado;
     }
-
-    
+ 
 
     public Long getId() {
         return id;
@@ -132,6 +136,14 @@ public class Post implements Serializable {
 
     public void setUrlImagen(String urlImagen) {
         this.urlImagen = urlImagen;
+    }
+
+    public Boolean getFijado() {
+        return fijado;
+    }
+
+    public void setFijado(Boolean fijado) {
+        this.fijado = fijado;
     }
 
     

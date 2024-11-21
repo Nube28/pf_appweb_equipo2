@@ -163,14 +163,61 @@ public class PostDAO implements IPostDAO {
         em.getTransaction().begin();
 
         try {
-            String jpql= "SELECT p FROM posts p ORDER BY p.fecha DESC";
-            TypedQuery<Post> query = em.createQuery(jpql,Post.class);
+            String jpql = "SELECT p FROM Post p WHERE p.fijado = false ORDER BY p.fechaHoraCreacion DESC";
+            TypedQuery<Post> query = em.createQuery(jpql, Post.class);
             query.setMaxResults(10);
             return query.getResultList();
         } catch (Exception e) {
             em.getTransaction().rollback();
             e.printStackTrace();
             throw new PersistenciaException("Error al consultar el post por ID.", e);
+        }
+    }
+
+    @Override
+    public List<Post> consultarPostFijadosMasRecientes() throws PersistenciaException {
+        EntityManager em = conexion.abrir();
+        em.getTransaction().begin();
+
+        try {
+            String jpql = "SELECT p FROM Post p WHERE p.fijado = true ORDER BY p.fechaHoraCreacion DESC";
+            TypedQuery<Post> query = em.createQuery(jpql, Post.class);
+            query.setMaxResults(10);
+            List<Post> posts = query.getResultList();
+            em.getTransaction().commit();
+            return posts;
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            e.printStackTrace();
+            throw new PersistenciaException("Error al consultar los posts fijados más recientes.", e);
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public boolean cambiarFijado(Long postId) throws PersistenciaException {
+        EntityManager em = conexion.abrir();
+        em.getTransaction().begin();
+
+        try {
+            Post post = em.find(Post.class, postId);
+            if (post == null) {
+                throw new PersistenciaException("No se encontró ningún post con el ID proporcionado.");
+            }
+            post.setFijado(!post.getFijado());
+            em.merge(post); 
+            em.getTransaction().commit();
+            return true;
+        } catch (PersistenciaException e) {
+            em.getTransaction().rollback();
+            throw e;
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            e.printStackTrace();
+            throw new PersistenciaException("Error al cambiar el estado de fijado del post.", e);
+        } finally {
+            em.close();
         }
     }
 
