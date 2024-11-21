@@ -12,22 +12,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Perfil Nombre</title>
-  <link rel="stylesheet" href="..\styles\general.css" type="text/css" />
-  <link rel="stylesheet" href="../styles/header.css" type="text/css" />
-  <link rel="stylesheet" href="../styles/feed-principal.css" type="text/css" />
+  <link rel="stylesheet" href="styles\general.css" type="text/css" />
+  <link rel="stylesheet" href="styles/header.css" type="text/css" />
+  <link rel="stylesheet" href="styles/feed-principal.css" type="text/css" />
 </head>
 
 <body>
-  <header>
-    <a href="pagina-inicial.jsp" class="logo-container">
-      <img src="../imgs/logo.png" alt="Logo" class="foto-logo" />
-    </a>
-
-    <a href="perfil.jsp" class="foto-perfil-container">
-      <img src="../imgs/hardcodeadas/foto-perfil.jpg" alt="Foto de Perfil" class="foto-perfil" />
-      <p>Gomez21345</p>
-    </a>
-  </header>
+  <%@ include file="/header.jspf" %>
   <section class="foto-y-nombre-container">
     <img src="../imgs/hardcodeadas/foto-perfil.jpg" alt="Foto de perfil" class="foto-perfil-grande">
     <h1>

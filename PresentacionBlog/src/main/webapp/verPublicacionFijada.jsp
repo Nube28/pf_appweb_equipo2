@@ -18,16 +18,7 @@
 </head>
 
 <body>
-  <header>
-    <a href="pagina-inicial.jsp" class="logo-container">
-      <img src="../imgs/logo.png" alt="Logo" class="foto-logo" />
-    </a>
-
-    <a href="perfil.jsp" class="foto-perfil-container">
-      <img src="../imgs/hardcodeadas/foto-perfil.jpg" alt="Foto de Perfil" class="foto-perfil" />
-      <p>Gomez21345</p>
-    </a>
-  </header>
+  <%@ include file="/header.jspf" %>
   <main>  
     <section class="usuario-informacion">
       <div class="foto-y-nombre-container">

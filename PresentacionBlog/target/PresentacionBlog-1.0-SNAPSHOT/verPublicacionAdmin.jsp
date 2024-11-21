@@ -16,17 +16,7 @@
     <title>Nombre publicacion</title>
   </head>
   <body>
-      <header>
-        <a href="pagina-inicial.jsp" class="logo-container">
-          <img src="../imgs/logo.png" alt="Logo"  class="foto-logo" />
-        </a>
-    
-        <a href="" class="foto-perfil-container">
-          <img src="../imgs/CoronaAdministrador.png" alt="Corona de administrador" class="foto-admin">
-          <img src="../imgs/hardcodeadas/foto-perfil-admin.jpg" alt="Foto de Perfil" class="foto-perfil" />
-          <p>Mister Admin</p>
-        </a>
-      </header>
+      <%@ include file="/header.jspf" %>
       <main>  
         <section class="usuario-informacion">
           <div class="foto-y-nombre-container">
