@@ -61,22 +61,20 @@ public class RegistrarUsuarioDatosUbicacion extends HttpServlet {
             String estado = request.getParameter("estado");
             String municipio = request.getParameter("municipio");
             String ciudad = request.getParameter("ciudad");
-            session.setAttribute("estado", estado);
-            session.setAttribute("municipio", municipio);
-            session.setAttribute("ciudad", ciudad);
-
             String nombre = (String) session.getAttribute("nombre");
+            String apellidoPaterno = (String) session.getAttribute("apellidoPaterno");
+            String apellidoMaterno = (String) session.getAttribute("apellidoMaterno");
             String email = (String) session.getAttribute("email");
             String contra = (String) session.getAttribute("contra");
             String telefono = (String) session.getAttribute("telefono");
             String fechaNacimientoStr = (String) session.getAttribute("fechaNacimiento");
-            SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd"); // Ajusta el formato si es necesario
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd"); 
             Date fechaNacimiento;
 
             fechaNacimiento = formatoFecha.parse(fechaNacimientoStr);
             String genero = (String) session.getAttribute("genero");
             
-            Usuario usuario = new Usuario(nombre, "Tapia", "Maldonado", email, contra, telefono, fechaNacimiento, genero);
+            Usuario usuario = new Usuario(nombre, apellidoPaterno, apellidoMaterno, email, contra, telefono, fechaNacimiento, genero);
             //usuario.setEstado(new Estado(estado, usuario));
             //usuario.setMunicipio(new Municipio(municipio, usuario));
             UsuarioDAO usuarioDAO=new UsuarioDAO();

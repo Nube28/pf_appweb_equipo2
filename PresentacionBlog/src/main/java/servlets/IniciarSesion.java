@@ -4,22 +4,27 @@
  */
 package servlets;
 
+import entidades.Usuario;
+import excepciones.PersistenciaException;
+import interfaces.IUsuarioDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import persistencia.UsuarioDAO;
 
 /**
  *
- * @author Berry
+ * @author USER
  */
-@WebServlet(name = "RegistrarUsuarioDatosBasicos", urlPatterns = {"/RegistrarUsuarioDatosBasicos"})
-public class RegistrarUsuarioDatosBasicos extends HttpServlet {
+public class IniciarSesion extends HttpServlet {
 
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -32,6 +37,8 @@ public class RegistrarUsuarioDatosBasicos extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        
     }
 
     /**
@@ -45,26 +52,26 @@ public class RegistrarUsuarioDatosBasicos extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        String nombre = request.getParameter("nombre");
-        String apellidoPaterno = request.getParameter("apellido-paterno");
-        String apellidoMaterno = request.getParameter("apellido-materno");
-        String email = request.getParameter("email");
-        String nombreUsuario = request.getParameter("nombreUsuario");
-        String contra = request.getParameter("contra");
-        String confirmacontra = request.getParameter("confirmar-contra");
-        if (!confirmacontra.equalsIgnoreCase(contra)) {
-            request.setAttribute("errorMensaje", "Las contraseñas no coinciden. Inténtalo de nuevo.");
-            getServletContext().getRequestDispatcher("/registrarUsuarioDatosBasicos.jsp").forward(request, response);
-        } else {
-            session.setAttribute("nombre", nombre);
-            session.setAttribute("apellidoPaterno", apellidoPaterno);
-            session.setAttribute("apellidoMaterno", apellidoMaterno);
-            session.setAttribute("email", email);
-            session.setAttribute("nombreUsuario", nombreUsuario);
-            session.setAttribute("contra", contra);
-            getServletContext().getRequestDispatcher("/registrarUsuarioDatosPersonales.jsp").forward(request, response);
+        String correo=request.getParameter("email");
+        String contra=request.getParameter("contra");
+        IUsuarioDAO usuarioDAO=new UsuarioDAO();
+        
+        try {
+
+            Usuario usuario = usuarioDAO.encontrarUsuarioPorCorreoYContrasena(correo, contra);
+            if (usuario != null) {
+                HttpSession session = request.getSession();
+                session.setAttribute("id", usuario.getId());
+                getServletContext().getRequestDispatcher("/paginaInicial.jsp").forward(request, response);
+            }else{
+                request.setAttribute("errorMensaje", "No se encontró el usuario con esas características.");
+                getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+            }
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(IniciarSesion.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        
     }
 
     /**
