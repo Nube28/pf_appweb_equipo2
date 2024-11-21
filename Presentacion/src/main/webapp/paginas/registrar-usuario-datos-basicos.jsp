@@ -19,7 +19,7 @@
         <header>
             <h1 class="texto"> Registrar Usuario</h1>
         </header>
-        <form action="registrar-usuario-datos-personales.jsp">
+        <form action="../RegistrarUsuarioDatosPersonales" method="POST">
             <fieldset>
                 <label for="nombre" class="texto">Nombre Completo:</label>
                 <input type="text" name="nombre" class="escribir"> 
