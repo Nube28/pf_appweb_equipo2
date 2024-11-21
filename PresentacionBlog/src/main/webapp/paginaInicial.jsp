@@ -1,4 +1,4 @@
-<%-- 
+ <%-- 
     Document   : pagina-inicial
     Created on : 20 nov 2024, 6:56:13 p.m.
     Author     : Berry
@@ -13,21 +13,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pagina de Inicio</title>
   <link rel="stylesheet" href="styles\general.css" type="text/css" />
-  <link rel="stylesheet" href="styles\header.css" type="text/css" />
+  <link rel="stylesheet" href="styles/header.css" type="text/css" />
   <link rel="stylesheet" href="styles\feed-principal.css" type="text/css" />
 </head>
  
 <body>
-  <header>
-    <a href="pagina-inicial.jsp" class="logo-container">
-      <img src="../imgs/logo.png" alt="Logo" class="foto-logo" />
-    </a>
-
-    <a href="perfil.jsp" class="foto-perfil-container">
-      <img src="../imgs/hardcodeadas/foto-perfil.jpg" alt="Foto de Perfil"" class="foto-perfil" />
-      <p>Gomez21345</p>
-    </a>
-  </header>
+  <%@ include file="/header.jspf" %>
   <main>
     <section class="fijados-container">
       <a href="ver-publicacion-fijada.jsp">
@@ -55,7 +46,7 @@
       Recientes
     </h2>
     <section class="publicaciones-container">
-      <a href="ver-publicacion.jsp">
+      <a href="VerPublicacion?id=1">
         <article class="publicacion">
           <img src="../imgs/hardcodeadas/hatsunemiku.jpg" alt="Imagen" class="portada-publicacion" />
           <h4>SACARAN NUEVO JUEGO DE HATSUNE MIKU!!!</h4>

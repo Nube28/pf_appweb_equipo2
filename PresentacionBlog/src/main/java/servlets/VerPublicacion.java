@@ -5,6 +5,7 @@
 package servlets;
 
 import entidades.Post;
+import entidades.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -39,28 +40,26 @@ public class VerPublicacion extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//         String postIdParam = request.getParameter("id");
-//        if (postIdParam == null || postIdParam.isEmpty()) {
-//            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID de publicación no especificado");
-//            return;
-//        }
-//
-//        try {
-//            Long postId = Long.valueOf(postIdParam);
-//            Post post = postDAO.consultarPostPorId(postId);
-//
-//            if (post == null) {
-//                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Publicación no encontrada");
-//                return;
-//            }
-//
-//            request.setAttribute("post", post);
-//            request.getRequestDispatcher("/WEB-INF/ver-publicacion.jsp").forward(request, response);
-//        } catch (NumberFormatException e) {
-//            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID inválido");
-//        } catch (Exception e) {
-//            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al recuperar la publicación");
-//        }
+        String postIdParam = request.getParameter("id");
+        if (postIdParam == null || postIdParam.isEmpty()) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID de publicación no especificado");
+            return;
+        }
+
+        try {
+            Long postId = Long.valueOf(postIdParam);
+            Post post = postDAO.consultarPostPorId(postId);
+            
+            Usuario autor = postDAO.consultarUsuarioPorPost(post);
+
+            request.setAttribute("post", post);
+            request.setAttribute("autor", autor);
+            request.getRequestDispatcher("/verPublicacion.jsp").forward(request, response);
+        } catch (NumberFormatException e) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID inválido");
+        } catch (Exception e) {
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al recuperar la publicación");
+        }
     }
 
     /**

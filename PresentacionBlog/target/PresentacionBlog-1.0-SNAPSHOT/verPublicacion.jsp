@@ -9,29 +9,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../styles/general.css" type="text/css" />
-  <link rel="stylesheet" href="../styles/header.css" type="text/css" />
-  <link rel="stylesheet" href="../styles/publicacion.css" type="text/css" />
+  <link rel="stylesheet" href="styles/general.css" type="text/css" />
+  <link rel="stylesheet" href="styles/header.css" type="text/css" />
+  <link rel="stylesheet" href="styles/publicacion.css" type="text/css" />
   <title>${fn:escapeXml(post.titulo)}</title>
 </head>
 
 <body>
-  <header>
-    <a href="pagina-inicial.jsp" class="logo-container">
-      <img src="../imgs/logo.png" alt="Logo" class="foto-logo" />
-    </a>
-
-    <a href="perfil.jsp" class="foto-perfil-container">
-      <img src="../imgs/hardcodeadas/foto-perfil.jpg" alt="Foto de Perfil" class="foto-perfil" />
-      <p>Gomez21345</p>
-    </a>
-  </header>
+  <%@ include file="/header.jspf" %>
   <main>
     <section class="usuario-informacion">
       <div class="foto-y-nombre-container">
         <img src="../imgs/hardcodeadas/bell-foto-perfil.jpg" alt="Foto de Perfil del publicador"
           class="foto-perfil-autor" />
-        <h3>${fn:escapeXml(post.usuario.nombre)}</h3>
+        <h3> ${fn:escapeXml(autor.nombre)} </h3>
       </div>
       <div class="informacion-publicacion">
         <p>Publicado el ${fn:escapeXml(post.fechaHoraCreacion)}</p>

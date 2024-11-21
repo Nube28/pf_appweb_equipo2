@@ -12,23 +12,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pagina de Inicio</title>
-  <link rel="stylesheet" href="..\styles\general.css" type="text/css" />
-  <link rel="stylesheet" href="../styles/header.css" type="text/css" />
-  <link rel="stylesheet" href="..\styles\feed-principal.css" type="text/css" />
+  <link rel="stylesheet" href="styles\general.css" type="text/css" />
+  <link rel="stylesheet" href="styles/header.css" type="text/css" />
+  <link rel="stylesheet" href="styles\feed-principal.css" type="text/css" />
 </head>
  
 <body>
-  <header>
-    <a href="pagina-inicial.jsp" class="logo-container">
-      <img src="../imgs/logo.png" alt="Logo"  class="foto-logo" />
-    </a>
-
-    <a href="" class="foto-perfil-container">
-      <img src="../imgs/CoronaAdministrador.png" alt="Corona de administrador" class="foto-admin">
-      <img src="../imgs/hardcodeadas/foto-perfil-admin.jpg" alt="Foto de Perfil" class="foto-perfil" />
-      <p>Mister Admin</p>
-    </a>
-  </header>
+  <%@ include file="/header.jspf" %>
   <main>
     <section class="fijados-container">
       <a href="ver-publicacion-fijada.jsp">

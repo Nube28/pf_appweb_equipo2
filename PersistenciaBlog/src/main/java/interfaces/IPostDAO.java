@@ -23,6 +23,8 @@ public interface IPostDAO {
     
     public List<Post> consultarPostsDelUsuario(Usuario usuario) throws PersistenciaException;
     
+    public Usuario consultarUsuarioPorPost(Post post) throws PersistenciaException;
+    
     public Post consultarPostPorId(Long id) throws PersistenciaException;
     
 }
