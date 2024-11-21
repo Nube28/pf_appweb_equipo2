@@ -1,0 +1,7 @@
+servlets\IniciarSesion.class
+servlets\RegistrarUsuarioDatosPersonales.class
+servlets\VerPublicacion.class
+servlets\RegistrarUsuarioDatosBasicos.class
+com\mycompany\persistenciablog2\resources\JakartaEE10Resource.class
+servlets\RegistrarUsuarioDatosUbicacion.class
+com\mycompany\persistenciablog2\JakartaRestConfiguration.class

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
+    <servlet>
+        <servlet-name>VerPublicacion</servlet-name>
+        <servlet-class>servlets.VerPublicacion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>IniciarSesion</servlet-name>
+        <servlet-class>servlets.IniciarSesion</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VerPublicacion</servlet-name>
+        <url-pattern>/VerPublicacion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IniciarSesion</servlet-name>
+        <url-pattern>/IniciarSesion</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+<!--    <error-page>
+        <error-code>404</error-code>
+        <location>/errores/error404.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/errores/error500.jsp</location>
+    </error-page>-->
+    <error-page>
+        <exception-type>javax.servlet.ServletException</exception-type>
+        <location>/errores/errorServlet.jsp</location>
+    </error-page>
+    <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee">
+<!--        <error-page>
+            <error-code>404</error-code>
+            <location>/errores/error404.jsp</location>
+        </error-page>
+        <error-page>
+            <error-code>500</error-code>
+            <location>/error500.jsp</location>
+        </error-page>-->
+    </web-app>
+</web-app>

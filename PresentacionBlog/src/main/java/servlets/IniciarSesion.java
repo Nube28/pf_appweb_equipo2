@@ -62,6 +62,8 @@ public class IniciarSesion extends HttpServlet {
             if (usuario != null) {
                 HttpSession session = request.getSession();
                 session.setAttribute("id", usuario.getId());
+                session.setAttribute("usuarioLogueado", usuario);
+                request.getSession().setAttribute("esAdmin", usuario.getTipo());
                 getServletContext().getRequestDispatcher("/paginaInicial.jsp").forward(request, response);
             }else{
                 request.setAttribute("errorMensaje", "No se encontró el usuario con esas características.");
