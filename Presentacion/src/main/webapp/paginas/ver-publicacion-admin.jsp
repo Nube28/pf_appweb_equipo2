@@ -17,7 +17,7 @@
   </head>
   <body>
       <header>
-        <a href="pagina-inicial.html" class="logo-container">
+        <a href="pagina-inicial.jsp" class="logo-container">
           <img src="../imgs/logo.png" alt="Logo"  class="foto-logo" />
         </a>
     

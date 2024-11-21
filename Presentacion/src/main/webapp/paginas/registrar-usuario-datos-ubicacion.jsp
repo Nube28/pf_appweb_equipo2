@@ -19,7 +19,7 @@
         <header>
             <h1 class="texto"> Registrar Usuario</h1>
         </header>
-        <form action="index.html">
+        <form action="index.jsp">
             <fieldset>
                 <label for="estado" class="texto">Estado:</label>
                 <select id="estado" name="estado" class="escribir">
@@ -41,7 +41,7 @@
                 </select>
             </fieldset>
             <footer>
-                <button type="submit" class="boton" formaction="registrar-usuario-datos-personales.html">Regresar</button>
+                <button type="submit" class="boton" formaction="registrar-usuario-datos-personales.jsp">Regresar</button>
                 <button type="submit" class="boton">Continuar</button>
             </footer>
         </form>

@@ -19,7 +19,7 @@
         <header>
             <h1 class="texto"> Registrar Usuario</h1>
         </header>
-        <form action="registrar-usuario-datos-ubicacion.html">
+        <form action="registrar-usuario-datos-ubicacion.jsp">
             <fieldset>
                 <label for="telefono" class="texto">Telefono:</label>
                 <input type="tel" name="telefono" class="escribir"> 
@@ -40,7 +40,7 @@
                 <input type="file" name="avatar" class="escribir texto">
             </fieldset>
             <footer>
-                <button type="submit" class="boton" formaction="registrar-usuario-datos-basicos.html">Regresar</button>
+                <button type="submit" class="boton" formaction="registrar-usuario-datos-basicos.jsp">Regresar</button>
                 <button type="submit" class="boton">Continuar</button>
             </footer>
         </form>

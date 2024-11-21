@@ -19,11 +19,11 @@
 
 <body>
   <header>
-    <a href="pagina-inicial.html" class="logo-container">
+    <a href="pagina-inicial.jsp" class="logo-container">
       <img src="../imgs/logo.png" alt="Logo" class="foto-logo" />
     </a>
 
-    <a href="perfil.html" class="foto-perfil-container">
+    <a href="perfil.jsp" class="foto-perfil-container">
       <img src="../imgs/hardcodeadas/foto-perfil.jpg" alt="Foto de Perfil" class="foto-perfil" />
       <p>Gomez21345</p>
     </a>
@@ -36,7 +36,7 @@
   </section>
   <main>
     <section class="publicaciones-container">
-      <a href="ver-publicacion.html">
+      <a href="ver-publicacion.jsp">
         <article class="publicacion">
           <img src="../imgs/hardcodeadas/sidon.jpg" alt="Imagen" class="portada-publicacion" />
           <h3>El gomez esta jugando otra vez al Zelda: Tears of the kingdom</h3>
@@ -45,7 +45,7 @@
           <p>Que juegazo que es y todo emulado!</p>
         </article>
       </a>
-      <a href="ver-publicacion.html">
+      <a href="ver-publicacion.jsp">
         <article class="publicacion">
           <img src="../imgs/hardcodeadas/sans.png" alt="Imagen" class="portada-publicacion" />
           <h3 class="undertale">SANS A SIDO AVISTADO USANDO COMIC SANS SIN PERMISO</h3>

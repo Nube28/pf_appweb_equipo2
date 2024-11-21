@@ -19,7 +19,7 @@
         <header>
             <h1 class="texto"> Registrar Usuario</h1>
         </header>
-        <form action="registrar-usuario-datos-personales.html">
+        <form action="registrar-usuario-datos-personales.jsp">
             <fieldset>
                 <label for="nombre" class="texto">Nombre Completo:</label>
                 <input type="text" name="nombre" class="escribir"> 
@@ -33,7 +33,7 @@
             <footer>
                 <button type="submit" class="boton">Continuar</button>
                 <p class="texto">Si ya tienes una cuenta:</p>
-                <a href="index.html">Inicia Sesión</a>
+                <a href="index.jsp">Inicia Sesión</a>
             </footer>
         </form>
     </main>
