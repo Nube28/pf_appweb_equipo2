@@ -79,7 +79,6 @@ public class RegistrarUsuarioDatosUbicacion extends HttpServlet {
             //usuario.setMunicipio(new Municipio(municipio, usuario));
             UsuarioDAO usuarioDAO=new UsuarioDAO();
             usuarioDAO.registrarUsuario(usuario);
-            request.getSession().setAttribute("usuarioLogueado", usuario);
             getServletContext().getRequestDispatcher("/registrarUsuarioDatosUbicacion.jsp").forward(request, response);
         } catch (ParseException ex) {
             Logger.getLogger(RegistrarUsuarioDatosUbicacion.class.getName()).log(Level.SEVERE, null, ex);
