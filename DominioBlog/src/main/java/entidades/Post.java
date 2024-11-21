@@ -41,6 +41,12 @@ public class Post implements Serializable {
     @Column(name="fechaHoraEdicion",nullable = false)
     private Date fechaHoraEdicion;
     
+    @Column(name="urlImagenPortada",nullable = false)
+    private String urlImagenPortada;
+    
+    @Column(name="urlImagen",nullable = true)
+    private String urlImagen;
+    
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
@@ -51,20 +57,26 @@ public class Post implements Serializable {
     public Post() {
     }
 
-    public Post(Date fechaHoraCreacion, String titulo, String contenido, Date fechaHoraEdicion) {
+    public Post(Date fechaHoraCreacion, String titulo, String contenido, Date fechaHoraEdicion, String urlImagenPortada, String urlImagen) {
         this.fechaHoraCreacion = fechaHoraCreacion;
         this.titulo = titulo;
         this.contenido = contenido;
         this.fechaHoraEdicion = fechaHoraEdicion;
+        this.urlImagenPortada = urlImagenPortada;
+        this.urlImagen = urlImagen;
     }
 
-    public Post(Long id, Date fechaHoraCreacion, String titulo, String contenido, Date fechaHoraEdicion) {
+    public Post(Long id, Date fechaHoraCreacion, String titulo, String contenido, Date fechaHoraEdicion, String urlImagenPortada, String urlImagen) {
         this.id = id;
         this.fechaHoraCreacion = fechaHoraCreacion;
         this.titulo = titulo;
         this.contenido = contenido;
         this.fechaHoraEdicion = fechaHoraEdicion;
+        this.urlImagenPortada = urlImagenPortada;
+        this.urlImagen = urlImagen;
     }
+
+    
 
     public Long getId() {
         return id;
@@ -106,6 +118,24 @@ public class Post implements Serializable {
         this.fechaHoraEdicion = fechaHoraEdicion;
     }
 
+    public String getUrlImagenPortada() {
+        return urlImagenPortada;
+    }
+
+    public void setUrlImagenPortada(String urlImagenPortada) {
+        this.urlImagenPortada = urlImagenPortada;
+    }
+
+    public String getUrlImagen() {
+        return urlImagen;
+    }
+
+    public void setUrlImagen(String urlImagen) {
+        this.urlImagen = urlImagen;
+    }
+
+    
+    
     @Override
     public String toString() {
         return "Post{" + "id=" + id + ", fechaHoraCreacion=" + fechaHoraCreacion + ", titulo=" + titulo + ", contenido=" + contenido + ", fechaHoraEdicion=" + fechaHoraEdicion + ", usuario=" + usuario + ", comentarios=" + comentarios + '}';

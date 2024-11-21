@@ -23,7 +23,7 @@ public class nuab {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws PersistenciaException {
-        Post p = new Post(new Date(), "as", "conetendo", new Date());
+        //Post p = new Post(new Date(), "as", "conetendo", new Date());
         
         PostDAO aO = new PostDAO();
         System.out.println(aO.consultarPostPorId(1l));

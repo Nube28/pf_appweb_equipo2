@@ -29,9 +29,11 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    @Column(name="urlAvatar",nullable = false)
+    private String urlAvatar;
+    
     @Column(name="nombre",nullable = false)
     private String nombre;
-    
     
     @Column(name="apellidoPaterno",nullable = false)
     private String apellidoPaterno;
@@ -54,6 +56,9 @@ public class Usuario implements Serializable {
     @Column(name="genero",nullable = false)
     private String genero;
     
+    @Column(name="tipo", nullable = false)
+    private Boolean tipo;
+    
     @OneToMany(mappedBy = "usuario")
     private List<Post> posts;
 
@@ -71,7 +76,22 @@ public class Usuario implements Serializable {
     public Usuario() {
     }
 
-    public Usuario(String nombre, String apellidoPaterno, String apellidoMaterno, String correo, String contrasenia, String telefono, Date fechaNacimiento, String genero) {
+    public Usuario(String urlAvatar, String nombre, String apellidoPaterno, String apellidoMaterno, String correo, String contrasenia, String telefono, Date fechaNacimiento, String genero, Boolean tipo) {
+        this.urlAvatar = urlAvatar;
+        this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.correo = correo;
+        this.contrasenia = contrasenia;
+        this.telefono = telefono;
+        this.fechaNacimiento = fechaNacimiento;
+        this.genero = genero;
+        this.tipo = tipo;
+    }
+
+    public Usuario(Long id, String urlAvatar, String nombre, String apellidoPaterno, String apellidoMaterno, String correo, String contrasenia, String telefono, Date fechaNacimiento, String genero) {
+        this.id = id;
+        this.urlAvatar = urlAvatar;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
@@ -82,17 +102,6 @@ public class Usuario implements Serializable {
         this.genero = genero;
     }
 
-    public Usuario(Long id, String nombre, String apellidoPaterno, String apellidoMaterno, String correo, String contrasenia, String telefono, Date fechaNacimiento, String genero) {
-        this.id = id;
-        this.nombre = nombre;
-        this.apellidoPaterno = apellidoPaterno;
-        this.apellidoMaterno = apellidoMaterno;
-        this.correo = correo;
-        this.contrasenia = contrasenia;
-        this.telefono = telefono;
-        this.fechaNacimiento = fechaNacimiento;
-        this.genero = genero;
-    }
 
     public Long getId() {
         return id;
@@ -181,6 +190,23 @@ public class Usuario implements Serializable {
     public void setEstado(Estado estado) {
         this.estado = estado;
     }
+
+    public String getUrlAvatar() {
+        return urlAvatar;
+    }
+
+    public void setUrlAvatar(String urlAvatar) {
+        this.urlAvatar = urlAvatar;
+    }
+
+    public Boolean getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(Boolean tipo) {
+        this.tipo = tipo;
+    }
+    
     
     
 
