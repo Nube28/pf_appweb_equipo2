@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package entidades;
 
 import java.io.Serializable;
@@ -13,8 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -22,57 +18,57 @@ import javax.persistence.Table;
  * @author USER
  */
 @Entity
-@Table(name="Usuarios")
+@Table(name = "Usuarios")
 public class Usuario implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    @Column(name="urlAvatar",nullable = false)
+
+    @Column(name = "urlAvatar", nullable = false)
     private String urlAvatar;
-    
-    @Column(name="nombre",nullable = false)
+
+    @Column(name = "nombre", nullable = false)
     private String nombre;
-    
-    @Column(name="apellidoPaterno",nullable = false)
+
+    @Column(name = "apellidoPaterno", nullable = false)
     private String apellidoPaterno;
-    
-    @Column(name="apellidoMaterno",nullable = false)
+
+    @Column(name = "apellidoMaterno", nullable = false)
     private String apellidoMaterno;
-    
-    @Column(name="correo",nullable = false)
+
+    @Column(name = "correo", nullable = false)
     private String correo;
-    
-    @Column(name="contrasenia",nullable = false)
+
+    @Column(name = "contrasenia", nullable = false)
     private String contrasenia;
-    
-    @Column(name="telefono",nullable = false)
+
+    @Column(name = "telefono", nullable = false)
     private String telefono;
-    
-    @Column(name="fechaNacimiento",nullable = false)
+
+    @Column(name = "fechaNacimiento", nullable = false)
     private Date fechaNacimiento;
-    
-    @Column(name="genero",nullable = false)
+
+    @Column(name = "genero", nullable = false)
     private String genero;
-    
-    @Column(name="tipo", nullable = false)
+
+    @Column(name = "tipo", nullable = false)
     private Boolean tipo;
-    
+
     @OneToMany(mappedBy = "usuario")
     private List<Post> posts;
 
     @OneToMany(mappedBy = "usuario")
     private List<Comentario> comentarios;
-    
-    @OneToOne
+
+    @ManyToOne
     @JoinColumn(name = "municipio", referencedColumnName = "id")
     private Municipio municipio;
-    
-    @OneToOne
+
+    @ManyToOne
     @JoinColumn(name = "estado", referencedColumnName = "id")
     private Estado estado;
-    
+
     public Usuario() {
     }
 
@@ -101,7 +97,6 @@ public class Usuario implements Serializable {
         this.fechaNacimiento = fechaNacimiento;
         this.genero = genero;
     }
-
 
     public Long getId() {
         return id;
@@ -206,15 +201,10 @@ public class Usuario implements Serializable {
     public void setTipo(Boolean tipo) {
         this.tipo = tipo;
     }
-    
-    
-    
 
     @Override
     public String toString() {
         return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno + ", correo=" + correo + ", contrasenia=" + contrasenia + ", telefono=" + telefono + ", fechaNacimiento=" + fechaNacimiento + ", genero=" + genero + ", posts=" + posts + ", comentarios=" + comentarios + ", municipio=" + municipio + ", estado=" + estado + '}';
     }
-    
-    
-    
+
 }
