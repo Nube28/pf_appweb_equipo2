@@ -26,11 +26,11 @@ public class nuab {
         PostDAO postDAO = new PostDAO();
         UsuarioDAO usuarioDAO = new  UsuarioDAO();
         
-        Post p = new Post(new Date(), "ESTE ES UN POST FIJADO", "conetendo contenido contenido contenido contenido", new Date(), "", "", true);
-        Post p2 = new Post(new Date(), "ESTE ES UN POST normal1", "conetendo contenido contenido contenido contenido", new Date(), "", "", false);
-        Post p3 = new Post(new Date(), "ESTE ES UN POST normal2", "conetendo contenido contenido contenido contenido", new Date(), "", "", false);
-        Post p4 = new Post(new Date(), "ESTE ES UN POST normal3", "conetendo contenido contenido contenido contenido", new Date(), "", "", false);
-        Post p5 = new Post(new Date(), "ESTE ES UN POST FIJADO2", "conetendo contenido contenido contenido contenido", new Date(), "", "", true);
+        Post p = new Post(new Date(), "ESTE ES UN POST FIJADO", "conetendo contenido contenido contenido contenido", new Date(), "", "imgs/hardcodeadas/sidon.jpg", true);
+        Post p2 = new Post(new Date(), "ESTE ES UN POST normal1", "conetendo contenido contenido contenido contenido", new Date(), "", "imgs/hardcodeadas/emily.jpg", false);
+        Post p3 = new Post(new Date(), "ESTE ES UN POST normal2", "conetendo contenido contenido contenido contenido", new Date(), "", "imgs/hardcodeadas/hatsunemiku.jpg", false);
+        Post p4 = new Post(new Date(), "ESTE ES UN POST normal3", "conetendo contenido contenido contenido contenido", new Date(), "", "imgs/hardcodeadas/sans.jpg", false);
+        Post p5 = new Post(new Date(), "ESTE ES UN POST FIJADO2", "conetendo contenido contenido contenido contenido", new Date(), "", "imgs/hardcodeadas/reddead2.jpg", true);
         Usuario u = new Usuario("", "admin", "asda", "asdas", "asd@ola.com", "1234", "asda", new Date(), "otro", true);
         Usuario u2 = new Usuario("", "papurri", "asda", "asdas", "asd@ola.com", "asd", "asda", new Date(), "otro", false);
         

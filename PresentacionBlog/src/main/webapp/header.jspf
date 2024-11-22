@@ -11,7 +11,7 @@
             </a>
 
             <a href="perfil.jsp" class="foto-perfil-container">
-                <img src="imgs/hardcodeadas/foto-perfil.jpg" alt="Foto de Perfil" class="foto-perfil" />
+                <img src="${usuarioLogueado.urlAvatar}" alt="Foto de Perfil" class="foto-perfil" />
                 <img src="imgs/CoronaAdministrador.png" alt="Corona de administrador" class="foto-admin">
                 <p>${fn:escapeXml(usuarioLogueado.nombre)}</p>
             </a>
@@ -24,7 +24,7 @@
             </a>
 
             <a href="perfil.jsp" class="foto-perfil-container">
-                <img src="imgs/hardcodeadas/foto-perfil.jpg" alt="Foto de Perfil" class="foto-perfil" />
+                <img src="${usuarioLogueado.urlAvatar}" alt="Foto de Perfil" class="foto-perfil" />
                 <p>${fn:escapeXml(usuarioLogueado.nombre)}</p>
             </a>
         </header>

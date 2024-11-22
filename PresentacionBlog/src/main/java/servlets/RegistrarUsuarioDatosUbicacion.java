@@ -69,12 +69,13 @@ public class RegistrarUsuarioDatosUbicacion extends HttpServlet {
             String telefono = (String) session.getAttribute("telefono");
             String fechaNacimientoStr = (String) session.getAttribute("fechaNacimiento");
             SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd"); 
+            String urlAvatar = (String) session.getAttribute("urlAvatar");
             Date fechaNacimiento;
-
+            
             fechaNacimiento = formatoFecha.parse(fechaNacimientoStr);
             String genero = (String) session.getAttribute("genero");
-
-            Usuario usuario = new Usuario("", nombre, apellidoPaterno, apellidoMaterno, email, contra, telefono, fechaNacimiento, genero, false);
+            
+            Usuario usuario = new Usuario(urlAvatar, nombre, apellidoPaterno, apellidoMaterno, email, contra, telefono, fechaNacimiento, genero, false);
             //usuario.setEstado(new Estado(estado, usuario));
             //usuario.setMunicipio(new Municipio(municipio, usuario));
             UsuarioDAO usuarioDAO=new UsuarioDAO();

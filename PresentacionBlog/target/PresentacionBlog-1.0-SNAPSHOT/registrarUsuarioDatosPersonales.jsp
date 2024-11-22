@@ -19,7 +19,7 @@
         <header>
             <h1 class="texto"> Registrar Usuario</h1>
         </header>
-        <form action="RegistrarUsuarioDatosPersonales" method="POST">
+        <form action="RegistrarUsuarioDatosPersonales" method="POST" enctype="multipart/form-data">
             <fieldset>
                 <label for="telefono" class="texto">Telefono:</label>
                 <input type="tel" name="telefono" class="escribir"> 
@@ -37,7 +37,7 @@
                     <label for="otro" class="texto">Otro</label>
                 </div>
                 <label for="avatar" class="texto">Avatar:</label>
-                <input type="file" name="avatar" class="escribir texto">
+                <input type="file" name="avatar" class="escribir texto" accept="image/*">
             </fieldset>
             <footer>
                 <button type="submit" class="boton">Regresar</button>

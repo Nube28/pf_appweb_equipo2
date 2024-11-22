@@ -51,4 +51,14 @@
             <location>/error500.jsp</location>
         </error-page>-->
     </web-app>
+    <servlet>
+        <servlet-name>RegistrarUsuarioDatosPersonales</servlet-name>
+        <servlet-class>servlets.RegistrarUsuarioDatosPersonales</servlet-class>
+        <multipart-config>
+            <location>D:\Berry\Documents\AplicacionesWeb\pf_appweb_equipo2\PresentacionBlog\src\main\webapp\imgs\uploads\tmp</location>
+            <max-file-size>10485760</max-file-size> 
+            <max-request-size>20971520</max-request-size> 
+            <file-size-threshold>0</file-size-threshold> 
+        </multipart-config>
+    </servlet>
 </web-app>

@@ -12,6 +12,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Part;
+import java.io.File;
 
 /**
  *
@@ -20,6 +22,8 @@ import jakarta.servlet.http.HttpSession;
 @WebServlet(name = "RegistrarUsuarioDatosPersonales", urlPatterns = {"/RegistrarUsuarioDatosPersonales"})
 public class RegistrarUsuarioDatosPersonales extends HttpServlet {
 
+    private static final String UPLOAD_DIRECTORY = "img/uploads/avatars";
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -45,13 +49,35 @@ public class RegistrarUsuarioDatosPersonales extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session=request.getSession();
+        HttpSession session = request.getSession();
+        
+        // Obtener parámetros del formulario
         String telefono = request.getParameter("telefono");
         String fechaNacimiento = request.getParameter("fecha-nacimiento");
         String genero = request.getParameter("genero");
+        Part avatarPart = request.getPart("avatar");
+        
+        // Establecer los atributos de sesión
         session.setAttribute("telefono", telefono);
         session.setAttribute("fechaNacimiento", fechaNacimiento);
         session.setAttribute("genero", genero);
+        
+        String fileName = avatarPart.getSubmittedFileName();
+        
+        String uploadPath = getServletContext().getRealPath("/") + UPLOAD_DIRECTORY;
+        
+        File uploadDir = new File(uploadPath);
+        if (!uploadDir.exists()) {
+            uploadDir.mkdirs(); 
+        }
+
+        String filePath = uploadPath + File.separator + fileName;
+        
+        avatarPart.write(filePath);
+        
+        String urlAvatar = UPLOAD_DIRECTORY + "/" + fileName;
+        session.setAttribute("urlAvatar", urlAvatar);
+        
         getServletContext().getRequestDispatcher("/registrarUsuarioDatosUbicacion.jsp").forward(request, response);
         
     }

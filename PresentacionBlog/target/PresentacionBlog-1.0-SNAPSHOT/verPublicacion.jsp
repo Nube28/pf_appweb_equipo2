@@ -20,7 +20,7 @@
         <main>
             <section class="usuario-informacion">
                 <div class="foto-y-nombre-container">
-                    <img src="../imgs/hardcodeadas/bell-foto-perfil.jpg" alt="Foto de Perfil del publicador"
+                    <img src="${fn:escapeXml(autor.urlAvatar)}" alt="Foto de Perfil del publicador"
                          class="foto-perfil-autor" />
                     <h3> ${fn:escapeXml(autor.nombre)} </h3>
                 </div>
@@ -30,12 +30,14 @@
                 </div>
             </section>
             <section class="publicacion">
-                <img src="../imgs/hardcodeadas/reddead2.jpg" alt="Imagen portada" class="foto-portada" />
+                <img src="${post.urlImagenPortada}" alt="Imagen portada" class="foto-portada" />
                 <h2>${fn:escapeXml(post.titulo)}</h2>
                 <p> ${fn:escapeXml(post.contenido)} </p>
-                <div class="imagenes-extra-container">
-                    <img src="" alt="Imagen extras" class="imagen-extra" />
-                </div>
+                <c:if test="${not empty sessionScope.urlAvatar}">
+                    <div class="imagenes-extra-container">
+                        <img src="${post.urlImagen}" alt="Imagen extras" class="imagen-extra" />
+                    </div>
+                </c:if>
                 <c:choose>
                     <c:when test="${esAdmin}">
                         <button type="submit" class="boton marg">Fijar</button>
