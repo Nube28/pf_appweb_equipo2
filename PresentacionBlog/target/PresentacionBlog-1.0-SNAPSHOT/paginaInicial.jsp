@@ -26,11 +26,10 @@
                         <article class="publicacion-fijada">
                         <img src=${post.urlImagenPortada} alt="Imagen" class="portada-publicacion" />
                         <h4>${post.titulo}</h4>
-                        <p>Publicado por: Nath</p> <br>
+                        <p>Publicado por: ${post.usuario.nombre}</p> <br>
                         <p>Publicado el: ${post.fechaHoraCreacion}</p>
                         </article>
                     </a>
-
                 </c:forEach>
             </section>
             <h2 class="subtitulo">
@@ -43,7 +42,7 @@
                         <article class="publicacion">
                             <img src=${post.urlImagenPortada} alt="Imagen" class="portada-publicacion" />
                             <h4>${post.titulo}</h4>
-                            <p>Publicado por: Nath</p> <br>
+                            <p>Publicado por: ${post.usuario.nombre}</p> <br>
                             <p>Publicado el: ${post.fechaHoraCreacion}</p>
                         </article>
                     </a>
@@ -53,7 +52,7 @@
         </main>
         <aside>
             <a href="crear-publicacion.jsp">
-                <img src="../imgs/agregar_publicacion.png" alt="Agregar publicacion" height="200px"
+                <img src="imgs/agregar_publicacion.png" alt="Agregar publicacion" height="200px"
                      class="boton-agregar-publicacion" />
             </a>
         </aside>

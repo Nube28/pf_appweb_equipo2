@@ -47,36 +47,33 @@
             </section>
         </main>
         <section class="section-comentarios">
-            <form action="" id="comentar">
-                <fieldset class="realizar-comentario">
-                    <label for="comentario">Comentar:</label>
-                    <input type="text" name="comentario" class="texto">
-                    <button type="submit" class="boton">Comentar</button>
-                </fieldset>
-            </form>
+            <c:choose>
+                <c:when test="${!esAdmin}">
+                    <form action="" id="comentar">
+                        <fieldset class="realizar-comentario">
+                            <label for="comentario">Comentar:</label>
+                            <input type="text" name="comentario" class="texto">
+                            <button type="submit" class="boton">Comentar</button>
+                        </fieldset>
+                    </form>
+                </c:when>
+            </c:choose>
             <section class="comentarios-contanier">
                 <h3>Comentarios:</h3>
-                <div class="comentario">
-                    <img src="../imgs/hardcodeadas/foto-perfil.jpg" alt="Foto de Perfil" />
-                    <h4>Gomez21345</h4>
-                    <p>Wooow como me gusta este juego de verdad robaron ese titulo merecidicimo</p>
-                    <p>Publicado el 16/10/2024 19:02</p>
+                <c:forEach var="comentario" items="${comentarios}">
+                    <div class="comentario">
+                        <img src="${comentario.usuario.urlAvatar}" alt="Foto de Perfil" />
+                        <h4>${fn:escapeXml(comentario.usuario.nombre)}</h4>
+                        <p>${fn:escapeXml(comentario.contenido)}</p>
+                        <p>Publicado el ${fn:escapeXml(comentario.fechaHora)}</p>
 
-                    <c:choose>
-                        <c:when test="${!esAdmin}">
-                            <a href="#comentar">Responder</a>
-                        </c:when>
-                    </c:choose>
-
-
-                </div>
-                <div class="comentario">
-                    <img src="../imgs/hardcodeadas/joker.avif" alt="Foto de Perfil" />
-                    <h4>xSpaceKat</h4>
-                    <p>Pues a mi me gusta el Gow pero es que el Red dead Redemption 2 es una obra maestra!</p>
-                    <p>Publicado el 15/10/2024 20:37</p>
-                    <a href="#comentar">Responder</a>
-                </div>
+                        <c:choose>
+                            <c:when test="${!esAdmin}">
+                                <a href="#comentar">Responder</a>
+                            </c:when>
+                        </c:choose>
+                    </div>
+                </c:forEach>
             </section>
         </section>
     </body>

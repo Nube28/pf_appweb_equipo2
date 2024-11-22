@@ -94,6 +94,8 @@ public class Comentario implements Serializable {
     public void setPost(Post post) {
         this.post = post;
     }
+    
+    
 
     @Override
     public String toString() {

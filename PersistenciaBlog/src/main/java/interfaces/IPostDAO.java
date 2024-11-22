@@ -32,5 +32,5 @@ public interface IPostDAO {
     public List<Post> consultarPostFijadosMasRecientes() throws PersistenciaException; 
     
     public boolean cambiarFijado(Long postId) throws PersistenciaException;
-    
+     
 }

@@ -206,7 +206,7 @@ public class PostDAO implements IPostDAO {
                 throw new PersistenciaException("No se encontró ningún post con el ID proporcionado.");
             }
             post.setFijado(!post.getFijado());
-            em.merge(post); 
+            em.merge(post);
             em.getTransaction().commit();
             return true;
         } catch (PersistenciaException e) {

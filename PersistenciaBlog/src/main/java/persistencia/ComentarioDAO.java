@@ -14,14 +14,13 @@ import javax.persistence.NoResultException;
  *
  * @author USER
  */
-public class ComentarioDAO implements IComentarioDAO{
-    
+public class ComentarioDAO implements IComentarioDAO {
+
     private final IConexion conexion;
 
     public ComentarioDAO() {
         conexion = new Conexion();
     }
-    
 
     @Override
     public boolean hacerComentario(Comentario comentario) throws PersistenciaException {
@@ -81,26 +80,21 @@ public class ComentarioDAO implements IComentarioDAO{
     @Override
     public List<Comentario> consultarComentariosDelPost(Post post) throws PersistenciaException {
         EntityManager em = conexion.abrir();
-        em.getTransaction().begin();
 
         try {
             List<Comentario> comentarios = em.createQuery(
-                    "SELECT c FROM comentarios c WHERE c.post_id = :idpost ",
-                    Comentario.class)
-                    .setParameter("idpost", post.getId())
+                    "SELECT c FROM Comentario c WHERE c.post.id = :postId", Comentario.class)
+                    .setParameter("postId", post.getId())
                     .getResultList();
-            em.getTransaction().commit();
             return comentarios;
         } catch (NoResultException e) {
-            em.getTransaction().rollback();
-            throw new PersistenciaException("Este post no tiene comentarios aún");
+            throw new PersistenciaException("Este post no tiene comentarios aún", e);
         } catch (Exception e) {
-            em.getTransaction().rollback();
             e.printStackTrace();
             throw new PersistenciaException("Error al obtener los comentarios", e);
         } finally {
             em.close();
         }
     }
-    
+
 }

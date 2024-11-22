@@ -6,7 +6,7 @@
 <c:choose>
     <c:when test="${esAdmin}">
         <header>
-            <a href="pagina-inicial.jsp" class="logo-container">
+            <a href="paginaInicial.jsp" class="logo-container">
                 <img src="imgs/logo.png" alt="Logo" class="foto-logo" />
             </a>
 
@@ -19,7 +19,7 @@
     </c:when>
     <c:otherwise>
         <header>
-            <a href="pagina-inicial.jsp" class="logo-container">
+            <a href="paginaInicial.jsp" class="logo-container">
                 <img src="imgs/logo.png" alt="Logo" class="foto-logo" />
             </a>
 
