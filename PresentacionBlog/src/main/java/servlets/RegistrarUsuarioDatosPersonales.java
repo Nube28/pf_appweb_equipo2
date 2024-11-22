@@ -7,6 +7,7 @@ package servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,16 +15,24 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 import java.io.File;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import org.apache.commons.io.IOUtils;
 
 /**
  *
  * @author Berry
  */
 @WebServlet(name = "RegistrarUsuarioDatosPersonales", urlPatterns = {"/RegistrarUsuarioDatosPersonales"})
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2,
+        maxFileSize = 1024 * 1024 * 10,
+        maxRequestSize = 1024 * 1024 * 50)
 public class RegistrarUsuarioDatosPersonales extends HttpServlet {
 
     private static final String UPLOAD_DIRECTORY = "img/uploads/avatars";
-    
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -50,36 +59,38 @@ public class RegistrarUsuarioDatosPersonales extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        
-        // Obtener parámetros del formulario
+
         String telefono = request.getParameter("telefono");
         String fechaNacimiento = request.getParameter("fecha-nacimiento");
         String genero = request.getParameter("genero");
-        Part avatarPart = request.getPart("avatar");
-        
-        // Establecer los atributos de sesión
+
         session.setAttribute("telefono", telefono);
         session.setAttribute("fechaNacimiento", fechaNacimiento);
         session.setAttribute("genero", genero);
-        
-        String fileName = avatarPart.getSubmittedFileName();
-        
-        String uploadPath = getServletContext().getRealPath("/") + UPLOAD_DIRECTORY;
-        
-        File uploadDir = new File(uploadPath);
-        if (!uploadDir.exists()) {
-            uploadDir.mkdirs(); 
+
+        String uploadDir = "imgs/upload"; 
+        String pathGuardar = request.getServletContext().getRealPath("/") + uploadDir;
+
+        File dir = new File(pathGuardar);
+        if (!dir.exists()) {
+            dir.mkdirs();
         }
 
-        String filePath = uploadPath + File.separator + fileName;
-        
-        avatarPart.write(filePath);
-        
-        String urlAvatar = UPLOAD_DIRECTORY + "/" + fileName;
+        Part filePart = request.getPart("avatar"); 
+        String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+
+
+        InputStream fileContent = filePart.getInputStream();
+        File targetFile = new File(pathGuardar, fileName);
+        Files.copy(fileContent, targetFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+        fileContent.close();
+
+        String urlAvatar = uploadDir + "/" + fileName;
         session.setAttribute("urlAvatar", urlAvatar);
-        
+
         getServletContext().getRequestDispatcher("/registrarUsuarioDatosUbicacion.jsp").forward(request, response);
-        
+
     }
 
     /**
