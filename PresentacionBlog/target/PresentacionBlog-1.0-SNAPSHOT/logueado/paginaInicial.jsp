@@ -18,7 +18,7 @@
         <link rel="stylesheet" href="styles\feed-principal.css" type="text/css" />
     </head>
     <body>
-        <%@ include file="/logueado/header.jspf" %>
+        <%@ include file="/header.jspf" %>
         <main>
             <section class="publicaciones-container">
                 <c:forEach var="post" items="${postsRecientesFijados}">
@@ -51,15 +51,10 @@
             </section>
         </main>
         <aside>
-            <c:choose>
-                <c:when test="${!esAdmin}">
-                    <a href="crear-publicacion.jsp">
-                        <img src="imgs/agregar_publicacion.png" alt="Agregar publicacion" height="200px"
-                             class="boton-agregar-publicacion" />
-                    </a>
-                </c:when>
-            </c:choose>
+            <a href="crearPublicacion.jsp">
+                <img src="imgs/agregar_publicacion.png" alt="Agregar publicacion" height="200px"
+                     class="boton-agregar-publicacion" />
+            </a>
         </aside>
-        
     </body>
 </html>

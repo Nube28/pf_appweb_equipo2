@@ -30,18 +30,20 @@ public class PostDAO implements IPostDAO {
     @Override
     public boolean hacerPost(Post post) throws PersistenciaException {
         EntityManager em = conexion.abrir();
-        em.getTransaction().begin();
-
         try {
+            em.getTransaction().begin();
             em.persist(post);
             em.getTransaction().commit();
             return true;
         } catch (Exception e) {
-            em.getTransaction().rollback();
-            e.printStackTrace();
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
             throw new PersistenciaException("Error al hacer el post", e);
         } finally {
-            em.close();
+            if (em.isOpen()) {
+                em.close();
+            }
         }
     }
 

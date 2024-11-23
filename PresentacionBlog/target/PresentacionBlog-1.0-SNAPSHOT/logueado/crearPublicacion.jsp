@@ -1,9 +1,3 @@
-<%-- 
-    Document   : crear-publicacion
-    Created on : 20 nov 2024, 6:54:06 p.m.
-    Author     : Berry
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,9 +12,9 @@
 </head>
 
 <body>
-  <%@ include file="/logueado/header.jspf" %>
+  <%@ include file="/header.jspf" %>
   <main>
-    <form action="ver-publicacion.jsp" method="POST">
+      <form id="form-publicacion" action="CrearPublicaciones" enctype="multipart/form-data" method="POST">
       <fieldset class="fiel-crear-container">
         <div class="form-group">
           <label for="titulo">Titulo: <span class="textitoDeAbajo">(Obligatorio)</span></label>
@@ -35,10 +29,6 @@
         <div class="form-group">
           <label for="imagen">Imagenes: <span class="textitoDeAbajo">(Opcional)</span></label>
           <input type="file" id="imagen" name="imagen" class="texto" />
-        </div>
-        <div class="form-group">
-          <label for="categoria">Tema:<span class="textitoDeAbajo">(Opcional)</span> </label>
-          <input type="text" id="categoria" name="categoria" class="texto" />
         </div>
         <button type="submit" class="boton">Publicar</button>
       </fieldset>
