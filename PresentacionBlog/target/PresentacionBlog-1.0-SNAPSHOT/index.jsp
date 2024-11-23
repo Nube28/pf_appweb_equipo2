@@ -27,7 +27,11 @@
                 <label for="contra" class="texto">Contraseña:</label>
                 <input type="password" id="contra" name="contra" class="escribir contraseña">
             </fieldset>
-            <%@include file="/advertencia.jspf"%>
+            <c:if test="${not empty errorMensaje}">
+                <div class="advertencia">
+                    <p>${errorMensaje}</p>
+                </div>
+            </c:if>
             <footer>
                 <button type="submit" class="boton">Iniciar Sesión</button>
                 <p class="texto">¿No tienes una cuenta?</p>

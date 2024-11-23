@@ -48,7 +48,7 @@ public class PaginaInicial extends HttpServlet {
             request.setAttribute("postsRecientes", postsRecientes);
             request.setAttribute("postsRecientesFijados", postsRecientesFijados);
             
-            request.getRequestDispatcher("/paginaInicial.jsp").forward(request, response);
+            request.getRequestDispatcher("/logueado/paginaInicial.jsp").forward(request, response);
         } catch (PersistenciaException ex) {
             Logger.getLogger(PaginaInicial.class.getName()).log(Level.SEVERE, null, ex);
         }

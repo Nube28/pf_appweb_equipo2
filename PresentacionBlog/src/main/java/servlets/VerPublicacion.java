@@ -63,7 +63,7 @@ public class VerPublicacion extends HttpServlet {
             request.setAttribute("post", post);
             request.setAttribute("autor", autor);
             request.setAttribute("comentarios", comentarios);
-            request.getRequestDispatcher("/verPublicacion.jsp").forward(request, response);
+            request.getRequestDispatcher("/logueado/verPublicacion.jsp").forward(request, response);
         } catch (NumberFormatException e) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID inválido");
         } catch (Exception e) {

@@ -37,7 +37,11 @@
                     <label for="confirmar-contra" class="texto">Confirmar contraseña:</label>
                     <input type="password" name="confirmar-contra" class="escribir contraseña" required>
                 </fieldset>
-                <%@include file="/advertencia.jspf"%>
+                <c:if test="${not empty errorMensaje}">
+                    <div class="advertencia">
+                        <p>${errorMensaje}</p>
+                    </div>
+                </c:if>
                 <footer>
                     <button type="submit" class="boton">Continuar</button>
                     <p class="texto">Si ya tienes una cuenta:</p>
