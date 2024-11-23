@@ -51,7 +51,7 @@
             </section>
         </main>
         <aside>
-            <a href="crear-publicacion.jsp">
+            <a href="crearPublicacion.jsp">
                 <img src="imgs/agregar_publicacion.png" alt="Agregar publicacion" height="200px"
                      class="boton-agregar-publicacion" />
             </a>

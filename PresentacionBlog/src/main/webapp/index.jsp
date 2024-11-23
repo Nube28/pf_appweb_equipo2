@@ -1,9 +1,3 @@
-<%-- 
-    Document   : index
-    Created on : 20 nov 2024, 6:55:12 p.m.
-    Author     : Berry
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
