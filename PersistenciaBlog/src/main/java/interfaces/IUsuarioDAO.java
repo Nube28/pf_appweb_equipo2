@@ -23,5 +23,7 @@ public interface IUsuarioDAO {
     
     public boolean comprobarUsuarioExistente(String correo)throws PersistenciaException;
     
+    public Usuario buscarUsuarioPorID(Long id)throws PersistenciaException;
+    
     
 }

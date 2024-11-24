@@ -10,6 +10,7 @@ import entidades.Usuario;
 import excepciones.PersistenciaException;
 import interfaces.IUsuarioDAO;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 /**
@@ -117,6 +118,30 @@ public class UsuarioDAO implements IUsuarioDAO{
         throw new PersistenciaException("Error", e);
         }
         
+    }
+
+    @Override
+    public Usuario buscarUsuarioPorID(Long id) throws PersistenciaException {
+        EntityManager em = conexion.abrir();
+        em.getTransaction().begin();
+        try {
+            Usuario usuario = em.createQuery(
+                    "SELECT p FROM Usuario p WHERE p.id = :id",
+                    Usuario.class)
+                    .setParameter("id", id)
+                    .getSingleResult();
+            em.getTransaction().commit();
+            return usuario;
+        } catch (NoResultException e) {
+            em.getTransaction().rollback();
+            throw new PersistenciaException("No se encontró ningún usuario con el ID proporcionado.", e);
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            e.printStackTrace();
+            throw new PersistenciaException("Error al consultar el usuario por ID.", e);
+        } finally {
+            em.close();
+        }
     }
 
     

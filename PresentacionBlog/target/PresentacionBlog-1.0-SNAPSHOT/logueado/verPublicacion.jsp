@@ -49,13 +49,15 @@
         <section class="section-comentarios">
             <c:choose>
                 <c:when test="${!esAdmin}">
-                    <form action="" id="comentar">
+                    <form id="form-comentario" enctype="multipart/form-data">
                         <fieldset class="realizar-comentario">
+                            <input type="hidden" name="idPost" id="idPost" value="${(post.id)}">
                             <label for="comentario">Comentar:</label>
-                            <input type="text" name="comentario" class="texto">
+                            <input type="text" name="comentario" id="comentario" class="texto">
                             <button type="submit" class="boton">Comentar</button>
                         </fieldset>
                     </form>
+                    <script src="../js/hacerComentario.js" type="application/javascript"></script>
                 </c:when>
             </c:choose>
             <section class="comentarios-contanier">
@@ -66,7 +68,6 @@
                         <h4>${fn:escapeXml(comentario.usuario.nombre)}</h4>
                         <p>${fn:escapeXml(comentario.contenido)}</p>
                         <p>Publicado el ${fn:escapeXml(comentario.fechaHora)}</p>
-
                         <c:choose>
                             <c:when test="${!esAdmin}">
                                 <a href="#comentar">Responder</a>
@@ -76,6 +77,7 @@
                 </c:forEach>
             </section>
         </section>
+        
     </body>
 
 </html>

@@ -60,7 +60,7 @@ public class IniciarSesion extends HttpServlet {
             Usuario usuario = usuarioDAO.encontrarUsuarioPorCorreoYContrasena(correo, contra);
             if (usuario != null) {
                 HttpSession session = request.getSession();
-                session.setAttribute("id", usuario.getId());
+                session.setAttribute("idUsuario", usuario.getId());
                 session.setAttribute("usuarioLogueado", usuario);
                 session.setAttribute("esAdmin", usuario.getTipo());
                 response.sendRedirect("PaginaInicial");

@@ -21,6 +21,10 @@
         <servlet-name>PaginaInicial</servlet-name>
         <servlet-class>servlets.PaginaInicial</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>HacerComentarios</servlet-name>
+        <servlet-class>servlets.HacerComentarios</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PaginaInicial</servlet-name>
         <url-pattern>/PaginaInicial</url-pattern>
@@ -32,6 +36,10 @@
     <servlet-mapping>
         <servlet-name>IniciarSesion</servlet-name>
         <url-pattern>/IniciarSesion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HacerComentarios</servlet-name>
+        <url-pattern>/HacerComentarios</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
