@@ -20,7 +20,7 @@
         <main>
             <section class="usuario-informacion">
                 <div class="foto-y-nombre-container">
-                    <img src="${fn:escapeXml(autor.urlAvatar)}" alt="Foto de Perfil del publicador"
+                    <img src="../${fn:escapeXml(autor.urlAvatar)}" alt="Foto de Perfil del publicador"
                          class="foto-perfil-autor" />
                     <h3> ${fn:escapeXml(autor.nombre)} </h3>
                 </div>
@@ -30,7 +30,7 @@
                 </div>
             </section>
             <section class="publicacion">
-                <img src="${post.urlImagenPortada}" alt="Imagen portada" class="foto-portada" />
+                <img src="../${post.urlImagenPortada}" alt="Imagen portada" class="foto-portada" />
                 <h2>${fn:escapeXml(post.titulo)}</h2>
                 <p> ${fn:escapeXml(post.contenido)} </p>
                 <c:if test="${not empty sessionScope.urlAvatar}">

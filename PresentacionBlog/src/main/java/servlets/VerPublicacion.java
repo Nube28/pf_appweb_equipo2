@@ -52,7 +52,8 @@ public class VerPublicacion extends HttpServlet {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID de publicación no especificado");
             return;
         }
-
+        System.out.println(request);
+        System.out.println(response);
         try {
             Long postId = Long.valueOf(postIdParam);
             Post post = postDAO.consultarPostPorId(postId);

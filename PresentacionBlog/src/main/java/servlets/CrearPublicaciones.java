@@ -40,7 +40,7 @@ import persistencia.PostDAO;
 @WebServlet(name = "CrearPublicaciones", urlPatterns = {"/CrearPublicaciones"})
 public class CrearPublicaciones extends HttpServlet {
 
-    private static final String UPLOAD_DIRECTORY = "img/uploads/posts";
+    private static final String UPLOAD_DIRECTORY = "imgs/uploads/posts";
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -110,6 +110,7 @@ public class CrearPublicaciones extends HttpServlet {
         try {
 
             postDAO.hacerPost(post);
+            response.setStatus(200);
             response.getWriter().write(String.format("{\"id\": %d}", post.getId()));
         } catch (PersistenciaException e) {
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);

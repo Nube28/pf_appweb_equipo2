@@ -1,31 +1,48 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("form-publicacion");
-
-    form.addEventListener("submit", async (event) => {
-        event.preventDefault();
-
-        const formData = new FormData(form);
-        const responseMessage = document.getElementById("response-message");
-
-        try {
-            const response = await fetch("/CrearPublicacion", {
-                method: "POST",
-                body: formData
-            });
-
-            if (response.ok) {
-                const result = await response.json();
-                // Redirigir al usuario a la página específica de la publicación
-                window.location.href = `/publicacion?id=${result.id}`;
-            } else {
-                const error = await response.text();
-                responseMessage.textContent = `Error al crear la publicación: ${error}`;
-                responseMessage.style.color = "red";
+document.getElementById('form-publicacion').addEventListener('submit', async function (event) {
+    event.preventDefault(); 
+    console.log("")
+    const formData = new FormData(this);
+    
+ 
+        const response = await fetch('../CrearPublicaciones', {
+            method: 'POST',
+            body: formData
+        }).then(result =>{
+            if (result.ok){
+              return result.json();  
+            }else{
+                throw new Error("Mensajito erro ahi no se");
             }
-        } catch (error) {
-            responseMessage.textContent = `Error de conexión: ${error.message}`;
-            responseMessage.style.color = "red";
-        }
-    });
+        }).then(json =>{
+            const id=json.id;
+            window.location.href=`../VerPublicacion?id=${id}`;
+        }).catch(error=>{
+            console.error(`Error de conexión: ${error.message}`);
+        });
 });
+////document.addEventListener("DOMContentLoaded", () => {
+//    const form = document.getElementById("form-publicacion");
+//
+//    form.addEventListener("submit", async (event) => {
+//        event.preventDefault();
+//
+//        
+//        const responseMessage = document.getElementById("response-message");
+//
+//        try {
+//            const response = await fetch("/CrearPublicacion", {
+//                method: "POST",
+//                body: formData
+//            });
+//
+//            
+//        } catch (error) {
+//            responseMessage.textContent = `Error de conexión: ${error.message}`;
+//            responseMessage.style.color = "red";
+//        }
+//    });
+//});
+
+
+
 

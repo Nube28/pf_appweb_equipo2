@@ -24,7 +24,7 @@
                 <c:forEach var="post" items="${postsRecientesFijados}">
                     <a href="VerPublicacion?id=${post.id}">
                         <article class="publicacion-fijada">
-                        <img src=${post.urlImagenPortada} alt="Imagen" class="portada-publicacion" />
+                        <img src="../${post.urlImagenPortada}" alt="Imagen" class="portada-publicacion" />
                         <h4>${post.titulo}</h4>
                         <p>Publicado por: ${post.usuario.nombre}</p> <br>
                         <p>Publicado el: ${post.fechaHoraCreacion}</p>
@@ -37,7 +37,6 @@
             </h2>
             <section class="publicaciones-container">
                 <c:forEach var="post" items="${postsRecientes}">
-
                     <a href="VerPublicacion?id=${post.id}">
                         <article class="publicacion">
                             <img src=${post.urlImagenPortada} alt="Imagen" class="portada-publicacion" />
@@ -46,14 +45,13 @@
                             <p>Publicado el: ${post.fechaHoraCreacion}</p>
                         </article>
                     </a>
-
                 </c:forEach>
             </section>
         </main>
         <aside>
             <c:choose>
                 <c:when test="${!esAdmin}">
-                    <a href="crear-publicacion.jsp">
+                    <a href="logueado/crearPublicacion.jsp">
                         <img src="imgs/agregar_publicacion.png" alt="Agregar publicacion" height="200px"
                              class="boton-agregar-publicacion" />
                     </a>
