@@ -5,8 +5,10 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -54,8 +56,9 @@ public class Post implements Serializable {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
     
-    @OneToMany(mappedBy="post")
-    private List<Comentario> comentarios;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "post_id") // Crea la clave foránea en Comentario
+    private List<Comentario> comentarios = new ArrayList<>();
     
     public Post() {
     }
@@ -162,13 +165,17 @@ public class Post implements Serializable {
         this.comentarios = comentarios;
     }
 
-    
-    
+    public void addComentario(Comentario comentario) {
+        this.comentarios.add(comentario);
+    }
+
+    public void removeComentario(Comentario comentario) {
+        this.comentarios.remove(comentario);
+    }
+
     @Override
     public String toString() {
         return "Post{" + "id=" + id + ", fechaHoraCreacion=" + fechaHoraCreacion + ", titulo=" + titulo + ", contenido=" + contenido + ", fechaHoraEdicion=" + fechaHoraEdicion + ", usuario=" + usuario + ", comentarios=" + comentarios + '}';
     }
-    
-    
-    
+ 
 }
