@@ -1,11 +1,11 @@
-C:\Users\USER\Documents\GitHub\pf_appweb_equipo2\PresentacionBlog\src\main\java\servlets\IniciarSesion.java
-C:\Users\USER\Documents\GitHub\pf_appweb_equipo2\PresentacionBlog\src\main\java\servlets\HacerComentarios.java
-C:\Users\USER\Documents\GitHub\pf_appweb_equipo2\PresentacionBlog\src\main\java\servlets\RegistrarUsuarioDatosUbicacion.java
-C:\Users\USER\Documents\GitHub\pf_appweb_equipo2\PresentacionBlog\src\main\java\servlets\PaginaInicial.java
-C:\Users\USER\Documents\GitHub\pf_appweb_equipo2\PresentacionBlog\src\main\java\com\mycompany\persistenciablog2\resources\JakartaEE10Resource.java
-C:\Users\USER\Documents\GitHub\pf_appweb_equipo2\PresentacionBlog\src\main\java\filters\filtroInicioSesion.java
-C:\Users\USER\Documents\GitHub\pf_appweb_equipo2\PresentacionBlog\src\main\java\servlets\RegistrarUsuarioDatosBasicos.java
-C:\Users\USER\Documents\GitHub\pf_appweb_equipo2\PresentacionBlog\src\main\java\servlets\RegistrarUsuarioDatosPersonales.java
-C:\Users\USER\Documents\GitHub\pf_appweb_equipo2\PresentacionBlog\src\main\java\servlets\VerPublicacion.java
-C:\Users\USER\Documents\GitHub\pf_appweb_equipo2\PresentacionBlog\src\main\java\com\mycompany\persistenciablog2\JakartaRestConfiguration.java
-C:\Users\USER\Documents\GitHub\pf_appweb_equipo2\PresentacionBlog\src\main\java\servlets\CrearPublicaciones.java
+C:\Users\Natasha Ruiz Perez\Documents\GitHub\pf_appweb_equipo2\PresentacionBlog\src\main\java\com\mycompany\persistenciablog2\JakartaRestConfiguration.java
+C:\Users\Natasha Ruiz Perez\Documents\GitHub\pf_appweb_equipo2\PresentacionBlog\src\main\java\servlets\HacerComentarios.java
+C:\Users\Natasha Ruiz Perez\Documents\GitHub\pf_appweb_equipo2\PresentacionBlog\src\main\java\com\mycompany\persistenciablog2\resources\JakartaEE10Resource.java
+C:\Users\Natasha Ruiz Perez\Documents\GitHub\pf_appweb_equipo2\PresentacionBlog\src\main\java\filters\filtroInicioSesion.java
+C:\Users\Natasha Ruiz Perez\Documents\GitHub\pf_appweb_equipo2\PresentacionBlog\src\main\java\servlets\CrearPublicaciones.java
+C:\Users\Natasha Ruiz Perez\Documents\GitHub\pf_appweb_equipo2\PresentacionBlog\src\main\java\servlets\RegistrarUsuarioDatosUbicacion.java
+C:\Users\Natasha Ruiz Perez\Documents\GitHub\pf_appweb_equipo2\PresentacionBlog\src\main\java\servlets\IniciarSesion.java
+C:\Users\Natasha Ruiz Perez\Documents\GitHub\pf_appweb_equipo2\PresentacionBlog\src\main\java\servlets\VerPublicacion.java
+C:\Users\Natasha Ruiz Perez\Documents\GitHub\pf_appweb_equipo2\PresentacionBlog\src\main\java\servlets\PaginaInicial.java
+C:\Users\Natasha Ruiz Perez\Documents\GitHub\pf_appweb_equipo2\PresentacionBlog\src\main\java\servlets\RegistrarUsuarioDatosBasicos.java
+C:\Users\Natasha Ruiz Perez\Documents\GitHub\pf_appweb_equipo2\PresentacionBlog\src\main\java\servlets\RegistrarUsuarioDatosPersonales.java

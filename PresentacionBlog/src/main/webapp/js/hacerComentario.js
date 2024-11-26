@@ -2,7 +2,7 @@ document.getElementById('form-comentario').addEventListener('submit', async func
     event.preventDefault(); 
     const formData = new FormData(this);
 
-    const response = await fetch('../HacerComentarios', {
+    const response = await fetch('http://localhost:8080/PresentacionBlog-1.0-SNAPSHOT/HacerComentarios', {
         method: 'POST',
         body: formData
     }).then(result => {
@@ -13,7 +13,8 @@ document.getElementById('form-comentario').addEventListener('submit', async func
         }
     }).then(json => {
         const id = json.id;
-        window.location.href = `../VerPublicacion?id=${id}`;
+        
+        //window.location.href = `../VerPublicacion?id=${id}`;
     }).catch(error => {
         console.error(`Error de conexión: ${error.message}`);
     });

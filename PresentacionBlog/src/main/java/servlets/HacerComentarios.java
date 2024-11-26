@@ -14,6 +14,8 @@ import interfaces.IUsuarioDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -30,6 +32,8 @@ import persistencia.UsuarioDAO;
  *
  * @author USER
  */
+@WebServlet("/HacerComentarios")
+@MultipartConfig
 public class HacerComentarios extends HttpServlet {
 
     /**
@@ -62,7 +66,9 @@ public class HacerComentarios extends HttpServlet {
             IPostDAO postDAO = new PostDAO();
             IComentarioDAO comentarioDAO = new ComentarioDAO();
             Usuario usuario = (Usuario)session.getAttribute("usuarioLogueado");
-            Long idPost = Long.parseLong(request.getParameter("idPost"));
+            String idPostStr = request.getParameter("idPost");
+            System.out.println("Valor de idPost: " + idPostStr);
+            Long idPost = Long.valueOf(idPostStr);
             String contenidoComentario = request.getParameter("comentario");
             Post post = postDAO.consultarPostPorId(idPost);
             Comentario comentario=new Comentario(new Date(), contenidoComentario, usuario, post);
