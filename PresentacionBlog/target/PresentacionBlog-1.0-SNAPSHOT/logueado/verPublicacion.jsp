@@ -73,6 +73,18 @@
                             </c:when>
                         </c:choose>
                     </div>
+                    <c:if test="${not empty comentario.respuestas}">
+                        <div class="comentarios-respuesta">
+                            <c:forEach var="respuesta" items="${comentario.respuestas}">
+                                <div class="comentario comentario-respuesta">
+                                    <img src="${respuesta.usuario.urlAvatar}" alt="Foto de Perfil" />
+                                    <h4>${fn:escapeXml(respuesta.usuario.nombre)}</h4>
+                                    <p>${fn:escapeXml(respuesta.contenido)}</p>
+                                    <p>Publicado el ${fn:escapeXml(respuesta.fechaHora)}</p>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </c:if>
                 </c:forEach>
             </section>
         </section>

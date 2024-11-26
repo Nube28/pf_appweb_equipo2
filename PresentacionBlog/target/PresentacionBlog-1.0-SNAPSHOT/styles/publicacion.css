@@ -118,6 +118,10 @@ main {
   left: 1rem;
 }
 
+comentario-respuesta{
+    margin-left: 3rem;
+}
+
 /* Nombre de usuario y hora */
 .comentario h4 {
   margin-left: 4rem;

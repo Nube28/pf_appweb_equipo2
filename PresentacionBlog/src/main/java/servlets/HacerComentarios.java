@@ -32,7 +32,7 @@ import persistencia.UsuarioDAO;
  *
  * @author USER
  */
-@WebServlet("/HacerComentarios")
+@WebServlet(name = "HacerComentarios", urlPatterns = {"/HacerComentarios"})
 @MultipartConfig
 public class HacerComentarios extends HttpServlet {
 
@@ -67,7 +67,6 @@ public class HacerComentarios extends HttpServlet {
             IComentarioDAO comentarioDAO = new ComentarioDAO();
             Usuario usuario = (Usuario)session.getAttribute("usuarioLogueado");
             String idPostStr = request.getParameter("idPost");
-            System.out.println("Valor de idPost: " + idPostStr);
             Long idPost = Long.valueOf(idPostStr);
             String contenidoComentario = request.getParameter("comentario");
             Post post = postDAO.consultarPostPorId(idPost);
@@ -75,6 +74,7 @@ public class HacerComentarios extends HttpServlet {
             comentarioDAO.hacerComentario(comentario);
             response.setStatus(200);
             response.getWriter().write(String.format("{\"id\": %d}", post.getId()));
+            
         } catch (PersistenciaException ex) {
             Logger.getLogger(HacerComentarios.class.getName()).log(Level.SEVERE, null, ex);
         }

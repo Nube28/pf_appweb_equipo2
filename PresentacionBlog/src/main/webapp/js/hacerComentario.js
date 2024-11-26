@@ -13,8 +13,7 @@ document.getElementById('form-comentario').addEventListener('submit', async func
         }
     }).then(json => {
         const id = json.id;
-        
-        //window.location.href = `../VerPublicacion?id=${id}`;
+        window.location.href = `http://localhost:8080/PresentacionBlog-1.0-SNAPSHOT/VerPublicacion?id=${id}`;
     }).catch(error => {
         console.error(`Error de conexión: ${error.message}`);
     });
