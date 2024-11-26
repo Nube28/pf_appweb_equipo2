@@ -27,9 +27,10 @@ public class nuab {
      */
     public static void main(String[] args) throws PersistenciaException {
         PostDAO postDAO = new PostDAO();
-        UsuarioDAO usuarioDAO = new  UsuarioDAO();
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
         IComentarioDAO comentarioDAO = new ComentarioDAO();
-        
+
+        // Crear usuarios
         Post p = new Post(new Date(), "ESTE ES UN POST FIJADO", "conetendo contenido contenido contenido contenido", new Date(), "", "imgs/hardcodeadas/sidon.jpg", true);
         Post p2 = new Post(new Date(), "ESTE ES UN POST normal1", "conetendo contenido contenido contenido contenido", new Date(), "", "imgs/hardcodeadas/emily.jpg", false);
         Post p3 = new Post(new Date(), "ESTE ES UN POST normal2", "conetendo contenido contenido contenido contenido", new Date(), "", "imgs/hardcodeadas/hatsunemiku.jpg", false);
@@ -37,25 +38,28 @@ public class nuab {
         Post p5 = new Post(new Date(), "ESTE ES UN POST FIJADO2", "conetendo contenido contenido contenido contenido", new Date(), "", "imgs/hardcodeadas/reddead2.jpg", true);
         Usuario u = new Usuario("", "admin", "asda", "asdas", "asd@ola.com", "1234", "asda", new Date(), "otro", true);
         Usuario u2 = new Usuario("", "papurri", "asda", "asdas", "asd@ola.com", "asd", "asda", new Date(), "otro", false);
-        
-        Comentario comentario = new Comentario(new Date(), "Comentario padre", u2, p2);
-        
-        List<Comentario> comentarios = new ArrayList<>();
-        
-        comentarios.add(comentario);
-        
-        p2.setComentarios(comentarios);
-        
-        //ComentarioHijo comentarioHijo = new ComentarioHijo(new Date(), "Comentario hijo", u2);
-
         usuarioDAO.registrarUsuario(u);
         usuarioDAO.registrarUsuario(u2);
-        postDAO.hacerPost(p);
-        postDAO.hacerPost(p2);
-        postDAO.hacerPost(p3);
-        postDAO.hacerPost(p4);
-        postDAO.hacerPost(p5);
 
+        // Crear un post
+        postDAO.hacerPost(p2);
+
+        // Crear un comentario padre
+        Comentario comentarioPadre = new Comentario(new Date(), "Comentario padre", u2);
+        comentarioDAO.hacerComentario(comentarioPadre); // Persistir el comentario padre
+
+        // Crear un comentario hijo
+        Comentario comentarioHijo = new Comentario(new Date(), "Comentario hijo", u2);
+        comentarioPadre.addComentarioHijo(comentarioHijo);
+        comentarioDAO.hacerComentario(comentarioHijo); // Persistir el comentario hijo
+
+        // Asociar el comentario padre al post
+        List<Comentario> comentarios = new ArrayList<>();
+        comentarios.add(comentarioPadre);
+        p2.setComentarios(comentarios);
+        postDAO.actualizar(p2); // Actualizar el post con los comentarios
+
+        // Consultar posts fijados
         System.out.println(postDAO.consultarPostFijadosMasRecientes());
     }
 

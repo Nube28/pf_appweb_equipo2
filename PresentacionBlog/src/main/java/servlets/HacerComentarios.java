@@ -47,7 +47,7 @@ public class HacerComentarios extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
     /**
@@ -65,21 +65,46 @@ public class HacerComentarios extends HttpServlet {
         try {
             IPostDAO postDAO = new PostDAO();
             IComentarioDAO comentarioDAO = new ComentarioDAO();
-            Usuario usuario = (Usuario)session.getAttribute("usuarioLogueado");
+
+            // Usuario logueado
+            Usuario usuario = (Usuario) session.getAttribute("usuarioLogueado");
+            if (usuario == null) {
+                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                response.getWriter().write("{\"error\": \"Usuario no autenticado\"}");
+                return;
+            }
+
+            // Obtener parámetros
             String idPostStr = request.getParameter("idPost");
             Long idPost = Long.valueOf(idPostStr);
             String contenidoComentario = request.getParameter("comentario");
+
+            // Buscar el post asociado
             Post post = postDAO.consultarPostPorId(idPost);
-            Comentario comentario=new Comentario(new Date(), contenidoComentario, usuario, post);
+            if (post == null) {
+                response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+                response.getWriter().write("{\"error\": \"Post no encontrado\"}");
+                return;
+            }
+
+            // Crear y asociar el comentario
+            Comentario comentario = new Comentario(new Date(), contenidoComentario, usuario);
+            comentario.setPost(post);
             comentarioDAO.hacerComentario(comentario);
-            response.setStatus(200);
+
+            // Respuesta exitosa
+            response.setStatus(HttpServletResponse.SC_OK);
             response.getWriter().write(String.format("{\"id\": %d}", post.getId()));
-            
+
         } catch (PersistenciaException ex) {
             Logger.getLogger(HacerComentarios.class.getName()).log(Level.SEVERE, null, ex);
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            response.getWriter().write("{\"error\": \"Ocurrió un error al procesar la solicitud\"}");
+        } catch (Exception ex) {
+            Logger.getLogger(HacerComentarios.class.getName()).log(Level.SEVERE, null, ex);
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            response.getWriter().write("{\"error\": \"Solicitud inválida\"}");
         }
-
-        
     }
 
     /**

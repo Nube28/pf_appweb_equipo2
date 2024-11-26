@@ -223,4 +223,21 @@ public class PostDAO implements IPostDAO {
         }
     }
 
+    public boolean actualizar(Post post) throws PersistenciaException {
+        EntityManager em = conexion.abrir();
+        em.getTransaction().begin();
+
+        try {
+            em.merge(post);
+            em.getTransaction().commit();
+            return true;
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            e.printStackTrace();
+            throw new PersistenciaException("Error al actualizar el post", e);
+        } finally {
+            em.close();
+        }
+    }
+
 }

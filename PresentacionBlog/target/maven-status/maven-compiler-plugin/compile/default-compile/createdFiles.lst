@@ -1,3 +1,11 @@
-servlets\RegistrarUsuarioDatosUbicacion.class
+servlets\IniciarSesion.class
 servlets\PaginaInicial.class
+servlets\RegistrarUsuarioDatosPersonales.class
+servlets\CrearPublicaciones.class
+servlets\VerPublicacion.class
+servlets\RegistrarUsuarioDatosBasicos.class
+com\mycompany\persistenciablog2\resources\JakartaEE10Resource.class
+servlets\RegistrarUsuarioDatosUbicacion.class
 filters\filtroInicioSesion.class
+servlets\HacerComentarios.class
+com\mycompany\persistenciablog2\JakartaRestConfiguration.class

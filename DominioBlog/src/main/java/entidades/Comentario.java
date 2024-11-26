@@ -20,26 +20,32 @@ import javax.persistence.Table;
  * @author USER
  */
 @Entity
-@Table(name="Comentarios")
+@Table(name = "Comentarios")
 public class Comentario implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    @Column(name="fechaHora",nullable = false)
+
+    @Column(name = "fechaHora", nullable = false)
     private Date fechaHora;
-    
-    @Column(name="contenido",nullable = false)
+
+    @Column(name = "contenido", nullable = false)
     private String contenido;
-    
+
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
-    
-    
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+
+    @ManyToOne
+    @JoinColumn(name = "post_id", nullable = false) 
+    private Post post;
+
+    @ManyToOne
     @JoinColumn(name = "comentario_padre_id")
+    private Comentario comentarioPadre;
+
+    @OneToMany(mappedBy = "comentarioPadre", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comentario> comentariosHijos = new ArrayList<>();
 
     public Comentario() {
@@ -86,8 +92,24 @@ public class Comentario implements Serializable {
         return usuario;
     }
 
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
+    }
+
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public Comentario getComentarioPadre() {
+        return comentarioPadre;
+    }
+
+    public void setComentarioPadre(Comentario comentarioPadre) {
+        this.comentarioPadre = comentarioPadre;
     }
 
     public List<Comentario> getComentariosHijos() {
@@ -99,11 +121,12 @@ public class Comentario implements Serializable {
     }
 
     public void addComentarioHijo(Comentario comentarioHijo) {
+        comentarioHijo.setComentarioPadre(this);
         this.comentariosHijos.add(comentarioHijo);
     }
 
     public void removeComentarioHijo(Comentario comentarioHijo) {
+        comentarioHijo.setComentarioPadre(null);
         this.comentariosHijos.remove(comentarioHijo);
     }
-    
 }
