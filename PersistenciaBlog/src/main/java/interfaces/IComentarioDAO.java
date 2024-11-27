@@ -23,4 +23,7 @@ public interface IComentarioDAO {
     
     public List<Comentario> consultarComentariosDelPost(Post post) throws PersistenciaException;
     
+    public List<Comentario> consultarComentariosHijosDelPost(Post post) throws PersistenciaException;
+    
+    public Comentario obtenerPorId(Long id) throws PersistenciaException;
 }

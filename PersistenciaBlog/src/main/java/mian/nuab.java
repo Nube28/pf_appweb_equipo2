@@ -30,7 +30,6 @@ public class nuab {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         IComentarioDAO comentarioDAO = new ComentarioDAO();
 
-        // Crear usuarios
         Post p = new Post(new Date(), "ESTE ES UN POST FIJADO", "conetendo contenido contenido contenido contenido", new Date(), "", "imgs/hardcodeadas/sidon.jpg", true);
         Post p2 = new Post(new Date(), "ESTE ES UN POST normal1", "conetendo contenido contenido contenido contenido", new Date(), "", "imgs/hardcodeadas/emily.jpg", false);
         Post p3 = new Post(new Date(), "ESTE ES UN POST normal2", "conetendo contenido contenido contenido contenido", new Date(), "", "imgs/hardcodeadas/hatsunemiku.jpg", false);
@@ -41,25 +40,20 @@ public class nuab {
         usuarioDAO.registrarUsuario(u);
         usuarioDAO.registrarUsuario(u2);
 
-        // Crear un post
         postDAO.hacerPost(p2);
+        postDAO.hacerPost(p);
+        postDAO.hacerPost(p3);
+        postDAO.hacerPost(p4);
+        postDAO.hacerPost(p5);
+        
 
-        // Crear un comentario padre
-        Comentario comentarioPadre = new Comentario(new Date(), "Comentario padre", u2);
-        comentarioDAO.hacerComentario(comentarioPadre); // Persistir el comentario padre
+        Comentario comentarioPadre = new Comentario(new Date(), "Comentario padre", u2, p2);
+        comentarioDAO.hacerComentario(comentarioPadre);
 
-        // Crear un comentario hijo
-        Comentario comentarioHijo = new Comentario(new Date(), "Comentario hijo", u2);
+        Comentario comentarioHijo = new Comentario(new Date(), "Comentario hijo", u2, p2);
         comentarioPadre.addComentarioHijo(comentarioHijo);
-        comentarioDAO.hacerComentario(comentarioHijo); // Persistir el comentario hijo
+        comentarioDAO.hacerComentario(comentarioHijo);
 
-        // Asociar el comentario padre al post
-        List<Comentario> comentarios = new ArrayList<>();
-        comentarios.add(comentarioPadre);
-        p2.setComentarios(comentarios);
-        postDAO.actualizar(p2); // Actualizar el post con los comentarios
-
-        // Consultar posts fijados
         System.out.println(postDAO.consultarPostFijadosMasRecientes());
     }
 

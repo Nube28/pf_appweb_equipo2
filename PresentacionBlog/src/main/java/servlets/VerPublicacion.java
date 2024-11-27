@@ -58,12 +58,14 @@ public class VerPublicacion extends HttpServlet {
             Long postId = Long.valueOf(postIdParam);
             Post post = postDAO.consultarPostPorId(postId);
             List<Comentario> comentarios = comentarioDAO.consultarComentariosDelPost(post);
+            List<Comentario> comentariosHijos = comentarioDAO.consultarComentariosHijosDelPost(post);
             
             Usuario autor = postDAO.consultarUsuarioPorPost(post);
 
             request.setAttribute("post", post);
             request.setAttribute("autor", autor);
             request.setAttribute("comentarios", comentarios);
+            request.setAttribute("comentariosHijos", comentariosHijos);
             request.getRequestDispatcher("/logueado/verPublicacion.jsp").forward(request, response);
         } catch (NumberFormatException e) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID inválido");

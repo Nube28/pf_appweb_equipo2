@@ -4,6 +4,7 @@
  */
 package interfaces;
 
+import entidades.Comentario;
 import entidades.Usuario;
 import excepciones.PersistenciaException;
 

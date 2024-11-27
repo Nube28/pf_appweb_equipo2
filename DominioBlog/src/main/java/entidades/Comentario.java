@@ -51,19 +51,38 @@ public class Comentario implements Serializable {
     public Comentario() {
     }
 
-    public Comentario(Date fechaHora, String contenido, Usuario usuario) {
+    public Comentario(Date fechaHora, String contenido, Usuario usuario, Post post) {
         this.fechaHora = fechaHora;
         this.contenido = contenido;
         this.usuario = usuario;
+        this.post = post;
     }
-
-    public Comentario(Long id, Date fechaHora, String contenido, Usuario usuario) {
+    
+    public Comentario(Long id, Date fechaHora, String contenido, Usuario usuario, Post post) {
         this.id = id;
         this.fechaHora = fechaHora;
         this.contenido = contenido;
         this.usuario = usuario;
+        this.post = post;
+    }
+    
+    public Comentario(Date fechaHora, String contenido, Usuario usuario, Post post, Comentario comentarioPadre) {
+        this.fechaHora = fechaHora;
+        this.contenido = contenido;
+        this.usuario = usuario;
+        this.post = post;
+        this.comentarioPadre = comentarioPadre;
     }
 
+    public Comentario(Long id, Date fechaHora, String contenido, Usuario usuario, Post post, Comentario comentarioPadre) {
+        this.id = id;
+        this.fechaHora = fechaHora;
+        this.contenido = contenido;
+        this.usuario = usuario;
+        this.post = post;
+        this.comentarioPadre = comentarioPadre;
+    }
+    
     public Long getId() {
         return id;
     }

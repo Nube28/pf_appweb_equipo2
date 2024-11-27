@@ -69,22 +69,30 @@
                         <p>Publicado el ${fn:escapeXml(comentario.fechaHora)}</p>
                         <c:choose>
                             <c:when test="${!esAdmin}">
-                                <a href="#comentar">Responder</a>
+                                <form id="form-comentario">
+                                    <input type="hidden" name="idPost" id="idPost" value="${(post.id)}" enctype="multipart/form-data">
+                                    <input type="hidden" name="idComentario" id="idComentario" value="${(comentario.id)}" enctype="multipart/form-data">
+                                    <fieldset class="realizar-respuesta">
+                                        <label for="comentario">Responder:</label>
+                                        <input type="text" name="comentario" id="comentario" class="texto">
+                                        <button type="submit" class="boton">Responder</button>
+                                    </fieldset>
+                                </form>
                             </c:when>
                         </c:choose>
                     </div>
-                    <c:if test="${not empty comentario.respuestas}">
-                        <div class="comentarios-respuesta">
-                            <c:forEach var="respuesta" items="${comentario.respuestas}">
+                    <div class="comentarios-respuesta">
+                        <c:forEach var="respuesta" items="${comentariosHijos}">
+                            <c:if test="${respuesta.comentarioPadre.id == comentario.id}">
                                 <div class="comentario comentario-respuesta">
                                     <img src="${respuesta.usuario.urlAvatar}" alt="Foto de Perfil" />
                                     <h4>${fn:escapeXml(respuesta.usuario.nombre)}</h4>
                                     <p>${fn:escapeXml(respuesta.contenido)}</p>
                                     <p>Publicado el ${fn:escapeXml(respuesta.fechaHora)}</p>
                                 </div>
-                            </c:forEach>
-                        </div>
-                    </c:if>
+                            </c:if>
+                        </c:forEach>
+                    </div>
                 </c:forEach>
             </section>
         </section>

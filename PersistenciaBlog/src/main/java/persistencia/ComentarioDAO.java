@@ -83,7 +83,7 @@ public class ComentarioDAO implements IComentarioDAO {
 
         try {
             List<Comentario> comentarios = em.createQuery(
-                    "SELECT c FROM Comentario c WHERE c.post.id = :postId", Comentario.class)
+                    "SELECT c FROM Comentario c WHERE c.post.id = :postId AND c.comentarioPadre IS NULL", Comentario.class)
                     .setParameter("postId", post.getId())
                     .getResultList();
             return comentarios;
@@ -92,6 +92,44 @@ public class ComentarioDAO implements IComentarioDAO {
         } catch (Exception e) {
             e.printStackTrace();
             throw new PersistenciaException("Error al obtener los comentarios", e);
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public List<Comentario> consultarComentariosHijosDelPost(Post post) throws PersistenciaException {
+        EntityManager em = conexion.abrir();
+
+        try {
+            List<Comentario> comentariosHijos = em.createQuery(
+                    "SELECT c FROM Comentario c WHERE c.post.id = :postId AND c.comentarioPadre IS NOT NULL", Comentario.class)
+                    .setParameter("postId", post.getId())
+                    .getResultList();
+            return comentariosHijos;
+        } catch (NoResultException e) {
+            throw new PersistenciaException("Este post no tiene comentarios hijos aún", e);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new PersistenciaException("Error al obtener los comentarios hijos", e);
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public Comentario obtenerPorId(Long id) throws PersistenciaException {
+        EntityManager em = conexion.abrir();
+        try {
+            // Busca el comentario por su ID
+            Comentario comentario = em.find(Comentario.class, id);
+            if (comentario == null) {
+                throw new PersistenciaException("No se encontró ningún comentario con el ID proporcionado.");
+            }
+            return comentario;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new PersistenciaException("Error al obtener el comentario por ID.", e);
         } finally {
             em.close();
         }

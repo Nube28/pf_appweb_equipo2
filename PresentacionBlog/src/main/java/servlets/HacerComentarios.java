@@ -58,6 +58,46 @@ public class HacerComentarios extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+//    @Override
+//    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+//            throws ServletException, IOException {
+//        HttpSession session = request.getSession();
+//        Usuario usuario = (Usuario) session.getAttribute("usuario");
+//        if (usuario == null) {
+//            response.sendRedirect("login.jsp");
+//            return;
+//        }
+//
+//        String contenido = request.getParameter("comentario");
+//        String idPostStr = request.getParameter("idPost");
+//        String idComentarioPadreStr = request.getParameter("idComentario");
+//
+//        try {
+//            Long idPost = Long.parseLong(idPostStr);
+//            Post post = new PostDAO().consultarPostPorId(idPost);
+//
+//            Comentario comentario = new Comentario();
+//            comentario.setFechaHora(new Date());
+//            comentario.setContenido(contenido);
+//            comentario.setUsuario(usuario);
+//            comentario.setPost(post);
+//
+//            if (idComentarioPadreStr != null && !idComentarioPadreStr.isEmpty()) {
+//                Long idComentarioPadre = Long.parseLong(idComentarioPadreStr);
+//                Comentario comentarioPadre = new ComentarioDAO().obtenerPorId(idComentarioPadre);
+//                comentario.setComentarioPadre(comentarioPadre);
+//            }
+//
+//            new ComentarioDAO().hacerComentario(comentario);
+//
+//            response.setContentType("application/json");
+//            response.getWriter().write("{\"id\": " + post.getId() + "}");
+//        } catch (PersistenciaException | NumberFormatException e) {
+//            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+//            response.getWriter().write("{\"error\": \"" + e.getMessage() + "\"}");
+//            Logger.getLogger(HacerComentarios.class.getName()).log(Level.SEVERE, null, e);
+//        }
+//    }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -88,7 +128,7 @@ public class HacerComentarios extends HttpServlet {
             }
 
             // Crear y asociar el comentario
-            Comentario comentario = new Comentario(new Date(), contenidoComentario, usuario);
+            Comentario comentario = new Comentario(new Date(), contenidoComentario, usuario, post);
             comentario.setPost(post);
             comentarioDAO.hacerComentario(comentario);
 
