@@ -25,6 +25,22 @@
         <servlet-name>HacerComentarios</servlet-name>
         <servlet-class>servlets.HacerComentarios</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ComentarHijo</servlet-name>
+        <servlet-class>servlets.ComentarHijo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ComentarComentarios</servlet-name>
+        <servlet-class>servlets.ComentarComentarios</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ComentarComentarios</servlet-name>
+        <url-pattern>/ComentarComentarios</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ComentarHijo</servlet-name>
+        <url-pattern>/ComentarHijo</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PaginaInicial</servlet-name>
         <url-pattern>/PaginaInicial</url-pattern>

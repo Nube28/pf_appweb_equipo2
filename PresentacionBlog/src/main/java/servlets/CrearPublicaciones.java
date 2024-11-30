@@ -42,7 +42,6 @@ public class CrearPublicaciones extends HttpServlet {
 
     private static final String UPLOAD_DIRECTORY = "imgs/uploads/posts";
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -103,9 +102,8 @@ public class CrearPublicaciones extends HttpServlet {
         
         HttpSession session = request.getSession();
 
-        Post post = new Post(new Date(), titulo, descripcion, null, portadaUrl, imagenUrl, Boolean.FALSE);
-
-        post.setUsuario((Usuario) session.getAttribute("usuarioLogueado"));
+        Post post = new Post(new Date(), titulo, descripcion, null, portadaUrl, imagenUrl, Boolean.FALSE, (Usuario) session.getAttribute("usuarioLogueado"));
+        
         IPostDAO postDAO = new PostDAO();
         try {
 

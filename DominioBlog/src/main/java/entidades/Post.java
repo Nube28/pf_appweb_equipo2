@@ -63,7 +63,7 @@ public class Post implements Serializable {
     public Post() {
     }
 
-    public Post(Date fechaHoraCreacion, String titulo, String contenido, Date fechaHoraEdicion, String urlImagenPortada, String urlImagen, Boolean fijado) {
+    public Post(Date fechaHoraCreacion, String titulo, String contenido, Date fechaHoraEdicion, String urlImagenPortada, String urlImagen, Boolean fijado, Usuario usuario) {
         this.fechaHoraCreacion = fechaHoraCreacion;
         this.titulo = titulo;
         this.contenido = contenido;
@@ -71,9 +71,10 @@ public class Post implements Serializable {
         this.urlImagenPortada = urlImagenPortada;
         this.urlImagen = urlImagen;
         this.fijado = fijado;
+        this.usuario = usuario;
     }
 
-    public Post(Long id, Date fechaHoraCreacion, String titulo, String contenido, Date fechaHoraEdicion, String urlImagenPortada, String urlImagen, Boolean fijado) {
+    public Post(Long id, Date fechaHoraCreacion, String titulo, String contenido, Date fechaHoraEdicion, String urlImagenPortada, String urlImagen, Boolean fijado, Usuario usuario) {
         this.id = id;
         this.fechaHoraCreacion = fechaHoraCreacion;
         this.titulo = titulo;
@@ -82,7 +83,10 @@ public class Post implements Serializable {
         this.urlImagenPortada = urlImagenPortada;
         this.urlImagen = urlImagen;
         this.fijado = fijado;
+        this.usuario = usuario;
     }
+
+    
  
 
     public Long getId() {

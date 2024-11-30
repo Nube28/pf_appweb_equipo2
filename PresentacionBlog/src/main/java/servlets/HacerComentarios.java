@@ -106,33 +106,18 @@ public class HacerComentarios extends HttpServlet {
             IPostDAO postDAO = new PostDAO();
             IComentarioDAO comentarioDAO = new ComentarioDAO();
 
-            // Usuario logueado
             Usuario usuario = (Usuario) session.getAttribute("usuarioLogueado");
-            if (usuario == null) {
-                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                response.getWriter().write("{\"error\": \"Usuario no autenticado\"}");
-                return;
-            }
 
-            // Obtener parámetros
             String idPostStr = request.getParameter("idPost");
             Long idPost = Long.valueOf(idPostStr);
             String contenidoComentario = request.getParameter("comentario");
 
-            // Buscar el post asociado
             Post post = postDAO.consultarPostPorId(idPost);
-            if (post == null) {
-                response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-                response.getWriter().write("{\"error\": \"Post no encontrado\"}");
-                return;
-            }
 
-            // Crear y asociar el comentario
             Comentario comentario = new Comentario(new Date(), contenidoComentario, usuario, post);
             comentario.setPost(post);
             comentarioDAO.hacerComentario(comentario);
 
-            // Respuesta exitosa
             response.setStatus(HttpServletResponse.SC_OK);
             response.getWriter().write(String.format("{\"id\": %d}", post.getId()));
 

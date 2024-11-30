@@ -7,27 +7,27 @@
 <c:choose>
     <c:when test="${esAdmin}">
         <header>
-            <a href="logueado/paginaInicial.jsp" class="logo-container">
+            <a href="PaginaInicial" class="logo-container">
                 <img src="imgs/logo.png" alt="Logo" class="foto-logo" />
             </a>
 
-            <a href="logueado/perfil.jsp" class="foto-perfil-container">
-                <img src="../${usuarioLogueado.urlAvatar}" alt="Foto de Perfil" class="foto-perfil" />
-                <img src="../imgs/CoronaAdministrador.png" alt="Corona de administrador" class="foto-admin">
+            <div class="foto-perfil-container">
+                <img src="${usuarioLogueado.urlAvatar}" alt="Foto de Perfil" class="foto-perfil" />
+                <img src="imgs/CoronaAdministrador.png" alt="Corona de administrador" class="foto-admin">
                 <p>${fn:escapeXml(usuarioLogueado.nombre)}</p>
-            </a>
+            </div>
         </header>
     </c:when>
     <c:otherwise>
         <header>
-            <a href="paginaInicial.jsp" class="logo-container">
+            <a href="PaginaInicial" class="logo-container">
                 <img src="imgs/logo.png" alt="Logo" class="foto-logo" />
             </a>
 
-            <a href="logueado/perfil.jsp" class="foto-perfil-container">
-                <img src="../${usuarioLogueado.urlAvatar}" alt="Foto de Perfil" class="foto-perfil" />
+            <div>
+                <img src="${usuarioLogueado.urlAvatar}" alt="Foto de Perfil" class="foto-perfil" />
                 <p>${fn:escapeXml(usuarioLogueado.nombre)}</p>
-            </a>
+            </div>
         </header>
     </c:otherwise>
 </c:choose>

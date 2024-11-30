@@ -72,9 +72,16 @@ public class PostDAO implements IPostDAO {
         em.getTransaction().begin();
 
         try {
-            em.remove(post);
-            em.getTransaction().commit();
-            return true;
+            Post managedPost = em.contains(post) ? post : em.find(Post.class, post.getId());
+
+            if (managedPost != null) {
+                em.remove(managedPost);
+                em.getTransaction().commit();
+                return true;
+            } else {
+                em.getTransaction().rollback();
+                throw new PersistenciaException("El post no existe en la base de datos.");
+            }
         } catch (Exception e) {
             em.getTransaction().rollback();
             e.printStackTrace();

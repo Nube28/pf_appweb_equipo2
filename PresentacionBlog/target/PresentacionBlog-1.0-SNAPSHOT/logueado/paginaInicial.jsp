@@ -24,7 +24,7 @@
                 <c:forEach var="post" items="${postsRecientesFijados}">
                     <a href="VerPublicacion?id=${post.id}">
                         <article class="publicacion-fijada">
-                        <img src="../${post.urlImagenPortada}" alt="Imagen" class="portada-publicacion" />
+                        <img src="${post.urlImagenPortada}" alt="Imagen" class="portada-publicacion" />
                         <h4>${post.titulo}</h4>
                         <p>Publicado por: ${post.usuario.nombre}</p> <br>
                         <p>Publicado el: ${post.fechaHoraCreacion}</p>

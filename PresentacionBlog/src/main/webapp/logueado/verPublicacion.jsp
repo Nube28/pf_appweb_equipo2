@@ -20,7 +20,7 @@
         <main>
             <section class="usuario-informacion">
                 <div class="foto-y-nombre-container">
-                    <img src="../${fn:escapeXml(autor.urlAvatar)}" alt="Foto de Perfil del publicador"
+                    <img src="${fn:escapeXml(autor.urlAvatar)}" alt="Foto de Perfil del publicador"
                          class="foto-perfil-autor" />
                     <h3> ${fn:escapeXml(autor.nombre)} </h3>
                 </div>
@@ -30,25 +30,29 @@
                 </div>
             </section>
             <section class="publicacion">
-                <img src="../${post.urlImagenPortada}" alt="Imagen portada" class="foto-portada" />
+                <img src="${post.urlImagenPortada}" alt="Imagen portada" class="foto-portada" />
                 <h2>${fn:escapeXml(post.titulo)}</h2>
                 <p> ${fn:escapeXml(post.contenido)} </p>
-                <c:if test="${not empty sessionScope.urlAvatar}">
-                    <div class="imagenes-extra-container">
-                        <img src="${post.urlImagen}" alt="Imagen extras" class="imagen-extra" />
-                    </div>
-                </c:if>
+                <div class="imagenes-extra-container">
+                    <img src="${post.urlImagen}" alt="Imagen extras" class="imagen-extra" />
+                </div>
                 <c:choose>
                     <c:when test="${esAdmin}">
-                        <button type="submit" class="boton marg">Fijar</button>
-                        <button type="submit" class="boton marg">Eliminar</button>
+                        <form action="FijarPublicacion" method="POST">
+                            <input type="hidden" name="idPost" id="idPost" value="${(post.id)}">
+                            <button type="submit" class="boton marg">Fijar</button>
+                        </form>                     
+                        <form action="EliminarPublicacion" method="POST">
+                            <input type="hidden" name="idPost" id="idPost" value="${(post.id)}">
+                            <button type="submit" class="boton marg">Eliminar</button>
+                        </form>
                     </c:when>
                 </c:choose>
             </section>
         </main>
         <section class="section-comentarios">
             <c:choose>
-                <c:when test="${!esAdmin}">
+                <c:when test="${!esAdmin && !post.fijado}">
                     <form id="form-comentario">
                         <input type="hidden" name="idPost" id="idPost" value="${(post.id)}" enctype="multipart/form-data">
                         <fieldset class="realizar-comentario">
@@ -68,9 +72,10 @@
                         <p>${fn:escapeXml(comentario.contenido)}</p>
                         <p>Publicado el ${fn:escapeXml(comentario.fechaHora)}</p>
                         <c:choose>
-                            <c:when test="${!esAdmin}">
-                                <form id="form-comentario">
+                            <c:when test="${!esAdmin && !post.fijado}">
+                                <form id="form-comentario-respuesta-${comentario.id}" class="form-comentario-respuesta">
                                     <input type="hidden" name="idPost" id="idPost" value="${(post.id)}" enctype="multipart/form-data">
+                                    <input type="hidden" name="idUsuario" id="idUsuario" value="${(usuarioLogueado.id)}" enctype="multipart/form-data">
                                     <input type="hidden" name="idComentario" id="idComentario" value="${(comentario.id)}" enctype="multipart/form-data">
                                     <fieldset class="realizar-respuesta">
                                         <label for="comentario">Responder:</label>
@@ -98,6 +103,6 @@
         </section>
 
     </body>
-
+    <script src="${pageContext.request.contextPath}/js/comentarComentarios.js" type="application/javascript"></script>
     <script src="${pageContext.request.contextPath}/js/hacerComentario.js" type="application/javascript"></script>
 </html>
