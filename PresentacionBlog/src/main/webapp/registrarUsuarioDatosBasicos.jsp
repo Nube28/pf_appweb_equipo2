@@ -29,9 +29,7 @@
                     <label for="apellido-materno" class="texto">Apellido Materno:</label>
                     <input type="text" name="apellido-materno" class="escribir" required> 
                     <label for="email" class="texto">Email:</label>
-                    <input type="email" name="email" class="escribir" required
-                    <label for="nombreUsuario" class="texto">Nombre de usuario:</label>
-                    <input type="text" name="nombreUsuario" class="escribir" required>      
+                    <input type="email" name="email" class="escribir" required> 
                     <label for="contra" class="texto">Contraseña:</label>
                     <input type="password" name="contra" class="escribir contraseña" required> 
                     <label for="confirmar-contra" class="texto">Confirmar contraseña:</label>
