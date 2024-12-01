@@ -8,18 +8,20 @@ document.addEventListener("DOMContentLoaded", () => {
             const titulo = crearPublicacionForm.getElementById("#titulo").value;
             const portada = crearPublicacionForm.getElementById("#portada").value;
             const usuarioId = crearPublicacionForm.getElementById("#idUsuario").value;
-            const contenido = 
+            const contenido = crearPublicacionForm.getElementById("#descripcion").value;
+            const imagen = crearPublicacionForm.getElementById("#imagen").value;
 
-            const response = await fetch("http://localhost:8080/PresentacionBlog-1.0-SNAPSHOT/ComentarHijo", {
+            const response = await fetch("http://localhost:8080/PresentacionBlog-1.0-SNAPSHOT/CrearPublicaciones", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    contenido,
+                    titulo,
+                    portada,
                     usuarioId: parseInt(usuarioId, 10),
-                    postId: parseInt(postId, 10),
-                    comentarioPadreId: parseInt(comentarioPadreId, 10)
+                    contenido,
+                    imagen
                 })
             });
 
@@ -32,8 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const comentario = await response.json();
             alert("Comentario agregado con éxito.");
             console.log(comentario);
-            
-            
         });
     });
 });
