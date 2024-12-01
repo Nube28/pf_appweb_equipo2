@@ -53,7 +53,7 @@
         <section class="section-comentarios">
             <c:choose>
                 <c:when test="${!esAdmin && !post.fijado}">
-                    <form id="form-comentario">
+                    <form id="form-comentario" class="form-comentario">
                         <input type="hidden" name="idPost" id="idPost" value="${(post.id)}" enctype="multipart/form-data">
                         <fieldset class="realizar-comentario">
                             <label for="comentario">Comentar:</label>

@@ -18,29 +18,3 @@ document.getElementById('form-publicacion').addEventListener('submit', async fun
         console.error(`Error de conexión: ${error.message}`);
     });
 });
-////document.addEventListener("DOMContentLoaded", () => {
-//    const form = document.getElementById("form-publicacion");
-//
-//    form.addEventListener("submit", async (event) => {
-//        event.preventDefault();
-//
-//        
-//        const responseMessage = document.getElementById("response-message");
-//
-//        try {
-//            const response = await fetch("/CrearPublicacion", {
-//                method: "POST",
-//                body: formData
-//            });
-//
-//            
-//        } catch (error) {
-//            responseMessage.textContent = `Error de conexión: ${error.message}`;
-//            responseMessage.style.color = "red";
-//        }
-//    });
-//});
-
-
-
-

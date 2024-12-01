@@ -14,4 +14,5 @@ servlets\CrearPublicaciones.class
 servlets\VerPublicacion.class
 servlets\ComentarHijo$ComentarioData.class
 servlets\RegistrarUsuarioDatosUbicacion.class
+servlets\HacerComentarios$ComentarioData.class
 servlets\FijarPublicacion.class

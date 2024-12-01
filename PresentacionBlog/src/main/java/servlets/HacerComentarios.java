@@ -4,6 +4,7 @@
  */
 package servlets;
 
+import com.google.gson.Gson;
 import entidades.Comentario;
 import entidades.Post;
 import entidades.Usuario;
@@ -62,73 +63,64 @@ public class HacerComentarios extends HttpServlet {
 //    protected void doPost(HttpServletRequest request, HttpServletResponse response)
 //            throws ServletException, IOException {
 //        HttpSession session = request.getSession();
-//        Usuario usuario = (Usuario) session.getAttribute("usuario");
-//        if (usuario == null) {
-//            response.sendRedirect("login.jsp");
-//            return;
-//        }
-//
-//        String contenido = request.getParameter("comentario");
-//        String idPostStr = request.getParameter("idPost");
-//        String idComentarioPadreStr = request.getParameter("idComentario");
-//
 //        try {
-//            Long idPost = Long.parseLong(idPostStr);
-//            Post post = new PostDAO().consultarPostPorId(idPost);
+//            IPostDAO postDAO = new PostDAO();
+//            IComentarioDAO comentarioDAO = new ComentarioDAO();
 //
-//            Comentario comentario = new Comentario();
-//            comentario.setFechaHora(new Date());
-//            comentario.setContenido(contenido);
-//            comentario.setUsuario(usuario);
+//            Usuario usuario = (Usuario) session.getAttribute("usuarioLogueado");
+//
+//            String idPostStr = request.getParameter("idPost");
+//            Long idPost = Long.valueOf(idPostStr);
+//            String contenidoComentario = request.getParameter("comentario");
+//
+//            Post post = postDAO.consultarPostPorId(idPost);
+//
+//            Comentario comentario = new Comentario(new Date(), contenidoComentario, usuario, post);
 //            comentario.setPost(post);
+//            comentarioDAO.hacerComentario(comentario);
 //
-//            if (idComentarioPadreStr != null && !idComentarioPadreStr.isEmpty()) {
-//                Long idComentarioPadre = Long.parseLong(idComentarioPadreStr);
-//                Comentario comentarioPadre = new ComentarioDAO().obtenerPorId(idComentarioPadre);
-//                comentario.setComentarioPadre(comentarioPadre);
-//            }
+//            response.setStatus(HttpServletResponse.SC_OK);
+//            response.getWriter().write(String.format("{\"id\": %d}", post.getId()));
 //
-//            new ComentarioDAO().hacerComentario(comentario);
-//
-//            response.setContentType("application/json");
-//            response.getWriter().write("{\"id\": " + post.getId() + "}");
-//        } catch (PersistenciaException | NumberFormatException e) {
+//        } catch (PersistenciaException ex) {
+//            Logger.getLogger(HacerComentarios.class.getName()).log(Level.SEVERE, null, ex);
 //            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-//            response.getWriter().write("{\"error\": \"" + e.getMessage() + "\"}");
-//            Logger.getLogger(HacerComentarios.class.getName()).log(Level.SEVERE, null, e);
+//            response.getWriter().write("{\"error\": \"Ocurrió un error al procesar la solicitud\"}");
+//        } catch (Exception ex) {
+//            Logger.getLogger(HacerComentarios.class.getName()).log(Level.SEVERE, null, ex);
+//            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+//            response.getWriter().write("{\"error\": \"Solicitud inválida\"}");
 //        }
 //    }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
+        response.setContentType("application/json");
+        PrintWriter out = response.getWriter();
+        Gson gson = new Gson();
+        IUsuarioDAO usuarioDAO = new UsuarioDAO();
+        IComentarioDAO comentarioDAO = new ComentarioDAO();
+        IPostDAO postDAO = new PostDAO();
+
         try {
-            IPostDAO postDAO = new PostDAO();
-            IComentarioDAO comentarioDAO = new ComentarioDAO();
+            String json = request.getReader().lines().reduce("", (accumulator, actual) -> accumulator + actual);
+            HacerComentarios.ComentarioData data = gson.fromJson(json, HacerComentarios.ComentarioData.class);
 
-            Usuario usuario = (Usuario) session.getAttribute("usuarioLogueado");
+            Usuario usuario = usuarioDAO.buscarUsuarioPorID(data.getUsuarioId());
 
-            String idPostStr = request.getParameter("idPost");
-            Long idPost = Long.valueOf(idPostStr);
-            String contenidoComentario = request.getParameter("comentario");
+            Post post = postDAO.consultarPostPorId(data.getPostId());
 
-            Post post = postDAO.consultarPostPorId(idPost);
+            Comentario nuevoComentario = new Comentario(
+                    new Date(),
+                    data.getContenido(),
+                    usuario,
+                    post
+            );
+            comentarioDAO.hacerComentario(nuevoComentario);
 
-            Comentario comentario = new Comentario(new Date(), contenidoComentario, usuario, post);
-            comentario.setPost(post);
-            comentarioDAO.hacerComentario(comentario);
-
-            response.setStatus(HttpServletResponse.SC_OK);
-            response.getWriter().write(String.format("{\"id\": %d}", post.getId()));
-
-        } catch (PersistenciaException ex) {
-            Logger.getLogger(HacerComentarios.class.getName()).log(Level.SEVERE, null, ex);
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            response.getWriter().write("{\"error\": \"Ocurrió un error al procesar la solicitud\"}");
-        } catch (Exception ex) {
-            Logger.getLogger(HacerComentarios.class.getName()).log(Level.SEVERE, null, ex);
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            response.getWriter().write("{\"error\": \"Solicitud inválida\"}");
+        } catch (Exception e) {
+            response.setStatus(javax.servlet.http.HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            out.write("{\"error\":\"Ocurrió un error en el servidor\"}");
         }
     }
 
@@ -140,6 +132,24 @@ public class HacerComentarios extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
+    
+    private static class ComentarioData {
+        private String contenido;
+        private Long usuarioId;
+        private Long postId;
 
+        public String getContenido() {
+            return contenido;
+        }
+
+        public Long getUsuarioId() {
+            return usuarioId;
+        }
+
+        public Long getPostId() {
+            return postId;
+        }
+        
+    }
 }
