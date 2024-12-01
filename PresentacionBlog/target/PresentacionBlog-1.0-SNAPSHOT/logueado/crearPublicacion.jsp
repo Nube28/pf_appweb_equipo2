@@ -14,8 +14,9 @@
     <body>
         <%@ include file="../logueado/header.jspf" %>
         <main>
-            <form id="form-publicacion"  enctype="multipart/form-data">
+            <form id="form-publicacion" class="form-publicacion" enctype="multipart/form-data">
                 <fieldset class="fiel-crear-container">
+                    <input type="hidden" name="idUsuario" id="idUsuario" value="${(usuarioLogueado.id)}">
                     <div class="form-group">
                         <label for="titulo">Titulo: <span class="textitoDeAbajo">(Obligatorio)</span></label>
                         <input type="text" id="titulo" name="titulo" class="texto" />
