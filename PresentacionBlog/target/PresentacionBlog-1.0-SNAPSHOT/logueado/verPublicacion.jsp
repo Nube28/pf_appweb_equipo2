@@ -33,9 +33,13 @@
                 <img src="${post.urlImagenPortada}" alt="Imagen portada" class="foto-portada" />
                 <h2>${fn:escapeXml(post.titulo)}</h2>
                 <p> ${fn:escapeXml(post.contenido)} </p>
-                <div class="imagenes-extra-container">
-                    <img src="${post.urlImagen}" alt="Imagen extras" class="imagen-extra" />
-                </div>
+                <c:choose>
+                    <c:when test="${not empty post.urlImagen}">
+                        <div class="imagenes-extra-container">
+                            <img src="${post.urlImagen}" alt="Imagen extra" class="imagen-extra" />
+                        </div>
+                    </c:when>
+                </c:choose>
                 <c:choose>
                     <c:when test="${esAdmin}">
                         <form action="FijarPublicacion" method="POST">
@@ -54,7 +58,8 @@
             <c:choose>
                 <c:when test="${!esAdmin && !post.fijado}">
                     <form id="form-comentario" class="form-comentario">
-                        <input type="hidden" name="idPost" id="idPost" value="${(post.id)}" enctype="multipart/form-data">
+                        <input type="hidden" name="idPost" id="idPost" value="${(post.id)}">
+                        <input type="hidden" name="idUsuario" id="idUsuario" value="${usuarioLogueado.id}">
                         <fieldset class="realizar-comentario">
                             <label for="comentario">Comentar:</label>
                             <input type="text" name="comentario" id="comentario" class="texto">

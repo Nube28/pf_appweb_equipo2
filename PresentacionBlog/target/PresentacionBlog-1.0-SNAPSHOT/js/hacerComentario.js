@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
             event.preventDefault();
             
             const contenido = comentarioForm.querySelector(".texto").value;
-            const usuarioId = document.getElementById("idUsuario").value;
+            const usuarioId = comentarioForm.querySelector("#idUsuario").value; 
             const postId = comentarioForm.querySelector("#idPost").value;
             
             console.log({ contenido, usuarioId, postId });

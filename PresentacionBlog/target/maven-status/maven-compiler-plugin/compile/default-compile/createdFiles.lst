@@ -3,8 +3,6 @@ servlets\PaginaInicial.class
 servlets\RegistrarUsuarioDatosPersonales.class
 servlets\RegistrarUsuarioDatosBasicos.class
 com\mycompany\persistenciablog2\resources\JakartaEE10Resource.class
-servlets\ComentarComentarios$ComentarioData.class
-servlets\ComentarComentarios.class
 servlets\ComentarHijo.class
 filters\filtroInicioSesion.class
 servlets\HacerComentarios.class

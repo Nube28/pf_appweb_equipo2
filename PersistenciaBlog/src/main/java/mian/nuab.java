@@ -48,7 +48,7 @@ public class nuab {
         Post p = new Post(new Date(), "ESTE ES UN POST FIJADO", "conetendo contenido contenido contenido contenido", new Date(), "imgs/hardcodeadas/sidon.jpg", "imgs/hardcodeadas/sidon.jpg", true, usu2);
         Post p2 = new Post(new Date(), "ESTE ES UN POST normal1", "conetendo contenido contenido contenido contenido", new Date(), "imgs/hardcodeadas/emily.jpg", "imgs/hardcodeadas/emily.jpg", false, usu3);
         Post p3 = new Post(new Date(), "ESTE ES UN POST normal2", "conetendo contenido contenido contenido contenido", new Date(), "imgs/hardcodeadas/hatsunemiku.jpg", "imgs/hardcodeadas/hatsunemiku.jpg", false, usu4);
-        Post p4 = new Post(new Date(), "ESTE ES UN POST normal3", "conetendo contenido contenido contenido contenido", new Date(), "imgs/hardcodeadas/sans.jpg", "imgs/hardcodeadas/sans.jpg", false, usu2);
+        Post p4 = new Post(new Date(), "ESTE ES UN POST normal3", "conetendo contenido contenido contenido contenido", new Date(), "imgs/hardcodeadas/sans.png", "", false, usu2);
         Post p5 = new Post(new Date(), "ESTE ES UN POST FIJADO2", "conetendo contenido contenido contenido contenido", new Date(), "imgs/hardcodeadas/reddead2.jpg", "imgs/hardcodeadas/reddead2.jpg", true, usu3);
         
 
