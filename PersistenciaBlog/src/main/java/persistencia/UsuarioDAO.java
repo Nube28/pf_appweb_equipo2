@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package persistencia;
 
 import conexionEM.Conexion;
@@ -15,16 +11,28 @@ import javax.persistence.TypedQuery;
 
 /**
  *
+ * Clase para gestionar la persistencia de los usuarios.
+ *
  * @author USER
  */
-public class UsuarioDAO implements IUsuarioDAO{
-    
+public class UsuarioDAO implements IUsuarioDAO {
+
     private final IConexion conexion;
 
+    /**
+     * Constctor por ausencia
+     */
     public UsuarioDAO() {
         conexion = new Conexion();
     }
 
+    /**
+     * Registra un nuevo usuario en la base de datos.
+     *
+     * @param usuario El objeto {@link Usuario} que se desea persistir.
+     * @return true si el usuario se registró con éxito.
+     * @throws PersistenciaException Si ocurre un error durante el registro.
+     */
     @Override
     public boolean registrarUsuario(Usuario usuario) throws PersistenciaException {
         EntityManager em = conexion.abrir();
@@ -43,6 +51,14 @@ public class UsuarioDAO implements IUsuarioDAO{
         }
     }
 
+    /**
+     * Actualiza un usuario existente en la base de datos.
+     *
+     * @param usuario El objeto Usuario con los datos actualizados.
+     * @return true si la operación fue exitosa.
+     * @throws PersistenciaException Si ocurre un error durante la
+     * actualización.
+     */
     @Override
     public boolean editarUsuario(Usuario usuario) throws PersistenciaException {
         EntityManager em = conexion.abrir();
@@ -61,11 +77,17 @@ public class UsuarioDAO implements IUsuarioDAO{
         }
 
     }
-    
 
+    /**
+     * Elimina un usuario de la base de datos.
+     *
+     * @param usuario El objeto Usuario que se desea eliminar.
+     * @return true si el usuario se eliminó con éxito.
+     * @throws PersistenciaException Si ocurre un error durante la eliminación.
+     */
     @Override
     public boolean eliminarUsuario(Usuario usuario) throws PersistenciaException {
-                EntityManager em = conexion.abrir();
+        EntityManager em = conexion.abrir();
         em.getTransaction().begin();
 
         try {
@@ -80,46 +102,70 @@ public class UsuarioDAO implements IUsuarioDAO{
             em.close();
         }
     }
-    
+
+    /**
+     * Encuentra un usuario por su correo y contraseña.
+     *
+     * @param correo El correo del usuario.
+     * @param contrasenia La contraseña del usuario.
+     * @return El objeto Usuario si existe, o null si no se encuentra.
+     * @throws PersistenciaException Si ocurre un error durante la consulta.
+     */
     @Override
     public Usuario encontrarUsuarioPorCorreoYContrasena(String correo, String contrasenia) throws PersistenciaException {
-    EntityManager em = conexion.abrir();
-    try {
-        String jpql = "SELECT u FROM Usuario u WHERE u.correo = :correo AND u.contrasenia = :contrasenia";
-        TypedQuery<Usuario> query = em.createQuery(jpql, Usuario.class);
-        query.setParameter("correo", correo);
-        query.setParameter("contrasenia", contrasenia);
-        Usuario usuario = query.getResultList().stream().findFirst().orElse(null);
+        EntityManager em = conexion.abrir();
+        try {
+            String jpql = "SELECT u FROM Usuario u WHERE u.correo = :correo AND u.contrasenia = :contrasenia";
+            TypedQuery<Usuario> query = em.createQuery(jpql, Usuario.class);
+            query.setParameter("correo", correo);
+            query.setParameter("contrasenia", contrasenia);
+            Usuario usuario = query.getResultList().stream().findFirst().orElse(null);
 
-        return usuario;
-    } catch (Exception e) {
-        e.printStackTrace();
-        throw new PersistenciaException("Error al encontrar el usuario por correo y contraseña", e);
-    } finally {
-        em.close();
+            return usuario;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new PersistenciaException("Error al encontrar el usuario por correo y contraseña", e);
+        } finally {
+            em.close();
+        }
     }
-}
 
+    /**
+     * Comprueba si un usuario ya existe en la base de datos por su correo
+     * electrónico.
+     *
+     * @param correo El correo del usuario.
+     * @return true si el usuario ya existe
+     * @throws PersistenciaException Si ocurre un error durante la consulta.
+     */
     @Override
     public boolean comprobarUsuarioExistente(String correo) throws PersistenciaException {
         EntityManager em = conexion.abrir();
-        try{
+        try {
             String jpql = "SELECT u FROM Usuario u WHERE u.correo = :correo";
-        TypedQuery<Usuario> query = em.createQuery(jpql, Usuario.class);
-        query.setParameter("correo", correo);
-        Usuario usuario = query.getResultList().stream().findFirst().orElse(null);
-        if(usuario==null){
-            return false;
-        }else{
-            return true;
-        }
-        }catch(Exception e){
+            TypedQuery<Usuario> query = em.createQuery(jpql, Usuario.class);
+            query.setParameter("correo", correo);
+            Usuario usuario = query.getResultList().stream().findFirst().orElse(null);
+            if (usuario == null) {
+                return false;
+            } else {
+                return true;
+            }
+        } catch (Exception e) {
             e.printStackTrace();
-        throw new PersistenciaException("Error", e);
+            throw new PersistenciaException("Error", e);
         }
-        
+
     }
 
+    /**
+     * Busca un usuario por su ID.
+     *
+     * @param id El identificador del usuario.
+     * @return El objeto Usuario si se encuentra.
+     * @throws PersistenciaException Si no se encuentra el usuario o ocurre un
+     * error durante la consulta.
+     */
     @Override
     public Usuario buscarUsuarioPorID(Long id) throws PersistenciaException {
         EntityManager em = conexion.abrir();
@@ -144,6 +190,4 @@ public class UsuarioDAO implements IUsuarioDAO{
         }
     }
 
-    
-    
 }

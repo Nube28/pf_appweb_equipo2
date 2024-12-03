@@ -31,14 +31,14 @@
                     <input type="hidden" name="idUsuario" id="idUsuario" value="${(usuarioLogueado.id)}">
                     <div class="form-group">
                         <label for="titulo">Titulo: <span class="textitoDeAbajo">(Obligatorio)</span></label>
-                        <input type="text" id="titulo" name="titulo" class="texto" />
+                        <input type="text" id="titulo" name="titulo" class="texto" required/>
                     </div>
                     <div class="form-group">
                         <label for="portada">Portada: <span class="textitoDeAbajo">(Obligatorio)</span> </label>
-                        <input type="file" id="portada" name="portada" class="texto" accept="image/png, image/jpeg" />
+                        <input type="file" id="portada" name="portada" class="texto" accept="image/png, image/jpeg" required/>
                     </div>
                     <label for="descripcion">Contenido: <span class="textitoDeAbajo">(Obligatorio)</span></label>
-                    <textarea id="descripcion" name="descripcion" class="textarea" class="texto"></textarea>
+                    <textarea id="descripcion" name="descripcion" class="textarea" class="texto" required></textarea>
                     <div class="form-group">
                         <label for="imagen">Imagenes: <span class="textitoDeAbajo">(Opcional)</span></label>
                         <input type="file" id="imagen" name="imagen" class="texto" accept="image/jpg, image/jpeg, image/png" />

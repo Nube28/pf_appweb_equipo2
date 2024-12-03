@@ -26,14 +26,14 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!response.ok) {
                 throw new Error(`Error en la respuesta del servidor: ${response.status}`);
             }
-            
+
             window.location.reload();
-            
+
             const comentario = await response.json();
             alert("Comentario agregado con éxito.");
             console.log(comentario);
-            
-            
+
+
         });
     });
 });
