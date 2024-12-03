@@ -33,7 +33,6 @@ public class RegistrarUsuarioDatosPersonales extends HttpServlet {
 
     private static final String UPLOAD_DIRECTORY = "img/uploads/avatars";
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -101,6 +100,6 @@ public class RegistrarUsuarioDatosPersonales extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
 }

@@ -145,56 +145,6 @@ public class CrearPublicaciones extends HttpServlet {
         response.getWriter().write("{\"error\": \"Error al procesar la solicitud.\"}");
     }
 }
-    
-//        response.setContentType("application/json");
-//        response.setCharacterEncoding("UTF-8");
-//
-//        String titulo = request.getParameter("titulo");
-//        String descripcion = request.getParameter("descripcion");
-//
-//        String uploadDir = request.getServletContext().getRealPath("/") + UPLOAD_DIRECTORY;
-//        File dir = new File(uploadDir);
-//        if (!dir.exists()) {
-//            dir.mkdirs();
-//        }
-//
-//        String portadaUrl = null;
-//        Part portadaPart = request.getPart("portada");
-//        if (portadaPart != null && portadaPart.getSize() > 0) {
-//            String portadaFileName = Paths.get(portadaPart.getSubmittedFileName()).getFileName().toString();
-//            File portadaFile = new File(uploadDir, portadaFileName);
-//            try (InputStream portadaContent = portadaPart.getInputStream()) {
-//                Files.copy(portadaContent, portadaFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-//            }
-//            portadaUrl = UPLOAD_DIRECTORY + "/" + portadaFileName;
-//        }
-//
-//        String imagenUrl = null;
-//        Part imagenPart = request.getPart("imagen");
-//        if (imagenPart != null && imagenPart.getSize() > 0) {
-//            String imagenFileName = Paths.get(imagenPart.getSubmittedFileName()).getFileName().toString();
-//            File imagenFile = new File(uploadDir, imagenFileName);
-//            try (InputStream imagenContent = imagenPart.getInputStream()) {
-//                Files.copy(imagenContent, imagenFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-//            }
-//            imagenUrl = UPLOAD_DIRECTORY + "/" + imagenFileName;
-//        }
-//        
-//        HttpSession session = request.getSession();
-//
-//        Post post = new Post(new Date(), titulo, descripcion, null, portadaUrl, imagenUrl, Boolean.FALSE, (Usuario) session.getAttribute("usuarioLogueado"));
-//        
-//        IPostDAO postDAO = new PostDAO();
-//        try {
-//
-//            postDAO.hacerPost(post);
-//            response.setStatus(200);
-//            response.getWriter().write(String.format("{\"id\": %d}", post.getId()));
-//        } catch (PersistenciaException e) {
-//            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-//            response.getWriter().write("{\"error\": \"Error al guardar la publicación.\"}");
-//        }
-//    }
 
     /**
      * Returns a short description of the servlet.

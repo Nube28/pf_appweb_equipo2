@@ -59,39 +59,6 @@ public class HacerComentarios extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-//    @Override
-//    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//        HttpSession session = request.getSession();
-//        try {
-//            IPostDAO postDAO = new PostDAO();
-//            IComentarioDAO comentarioDAO = new ComentarioDAO();
-//
-//            Usuario usuario = (Usuario) session.getAttribute("usuarioLogueado");
-//
-//            String idPostStr = request.getParameter("idPost");
-//            Long idPost = Long.valueOf(idPostStr);
-//            String contenidoComentario = request.getParameter("comentario");
-//
-//            Post post = postDAO.consultarPostPorId(idPost);
-//
-//            Comentario comentario = new Comentario(new Date(), contenidoComentario, usuario, post);
-//            comentario.setPost(post);
-//            comentarioDAO.hacerComentario(comentario);
-//
-//            response.setStatus(HttpServletResponse.SC_OK);
-//            response.getWriter().write(String.format("{\"id\": %d}", post.getId()));
-//
-//        } catch (PersistenciaException ex) {
-//            Logger.getLogger(HacerComentarios.class.getName()).log(Level.SEVERE, null, ex);
-//            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-//            response.getWriter().write("{\"error\": \"Ocurrió un error al procesar la solicitud\"}");
-//        } catch (Exception ex) {
-//            Logger.getLogger(HacerComentarios.class.getName()).log(Level.SEVERE, null, ex);
-//            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-//            response.getWriter().write("{\"error\": \"Solicitud inválida\"}");
-//        }
-//    }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
