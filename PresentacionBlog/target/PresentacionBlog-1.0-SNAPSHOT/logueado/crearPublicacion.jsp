@@ -1,4 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +14,17 @@
     </head>
 
     <body>
-        <%@ include file="../logueado/header.jspf" %>
+        <header>
+            <a href="../PaginaInicial" class="logo-container">
+                <img src="../imgs/logo.png" alt="Logo" class="foto-logo" />
+            </a>
+
+            <div>
+                <img src="../${usuarioLogueado.urlAvatar}" alt="Foto de Perfil" class="foto-perfil" />
+                <p>${fn:escapeXml(usuarioLogueado.nombre)}</p>
+            </div>
+        </header>
+
         <main>
             <form id="form-publicacion" class="form-publicacion" enctype="multipart/form-data">
                 <fieldset class="fiel-crear-container">

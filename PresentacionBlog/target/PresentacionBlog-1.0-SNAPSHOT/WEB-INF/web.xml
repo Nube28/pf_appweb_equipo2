@@ -62,7 +62,7 @@
             30
         </session-timeout>
     </session-config>
-    <error-page>
+<!--    <error-page>
         <error-code>404</error-code>
         <location>/errores/error404.jsp</location>
     </error-page>
@@ -83,5 +83,5 @@
             <error-code>500</error-code>
             <location>/error500.jsp</location>
         </error-page>
-    </web-app>
+    </web-app>-->
 </web-app>
