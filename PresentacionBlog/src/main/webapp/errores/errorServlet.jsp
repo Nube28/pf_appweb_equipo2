@@ -10,8 +10,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Error en el servidor</title>
+        <link rel="stylesheet" href="styles/Errores.css" type="text/css">
     </head>
     <body>
-        <h1>no jala</h1>
+        <h1>Que sucedio?!?!</h1>
+        <h3>Nosotros tampoco sabemos :/<h3>
+                <h4>Presione <a href="index.jsp">aqui</a> para regresar a la paginia inicial!<h4>                
     </body>
 </html>

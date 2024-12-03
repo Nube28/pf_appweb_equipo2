@@ -10,9 +10,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>ERROR 404</title>
-        <link rel="stylesheet" href="..\styles\general.css" type="text/css">
+        <link rel="stylesheet" href="styles/Errores.css" type="text/css">
     </head>
     <body>
-        <h1>NO EXISTE</h1>
+        <h1>No se encontro la pagina!</h1>
+        <h3>La pagina que esta intentando acceder no existe :(<h3>
+                <h4>Presione <a href="index.jsp">aqui</a> para regresar a la paginia inicial!<h4>                
     </body>
 </html>

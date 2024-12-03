@@ -27,7 +27,7 @@
                     <label for="apellido-paterno" class="texto">Apellido Paterno:</label>
                     <input type="text" name="apellido-paterno" class="escribir" required> 
                     <label for="apellido-materno" class="texto">Apellido Materno:</label>
-                    <input type="text" name="apellido-materno" class="escribir" required> 
+                    <input type="text" name="apellido-materno" class="escribir"> 
                     <label for="email" class="texto">Email:</label>
                     <input type="email" name="email" class="escribir" required> 
                     <label for="contra" class="texto">Contraseña:</label>

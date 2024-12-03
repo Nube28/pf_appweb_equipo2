@@ -22,10 +22,10 @@
         <form action="RegistrarUsuarioDatosPersonales" method="POST" enctype="multipart/form-data">
             <fieldset>
                 <label for="telefono" class="texto">Telefono:</label>
-                <input type="tel" name="telefono" class="escribir"> 
+                <input type="tel" name="telefono" class="escribir" required> 
 
                 <label for="fecha-nacimiento" class="texto">Fecha nacimiento:</label>
-                <input type="date" name="fecha-nacimiento" class="escribir fecha"> 
+                <input type="date" name="fecha-nacimiento" class="escribir fecha" required> 
 
                 <label for="genero" class="texto">Genero:</label>
                 <div>
@@ -37,10 +37,10 @@
                     <label for="otro" class="texto">Otro</label>
                 </div>
                 <label for="avatar" class="texto">Avatar:</label>
-                <input type="file" name="avatar" class="escribir texto" accept="image/*">
+                <input type="file" name="avatar" class="escribir texto" accept="image/*" required>
             </fieldset>
             <footer>
-                <button type="submit" class="boton">Regresar</button>
+                <a href="registrarUsuarioDatosBasicos.jsp"><button type="button" class="boton">Regresar</button></a>
                 <button type="submit" class="boton">Continuar</button>
             </footer>
         </form>
