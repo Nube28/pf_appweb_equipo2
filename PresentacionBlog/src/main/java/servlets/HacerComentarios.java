@@ -1,14 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package servlets;
 
 import com.google.gson.Gson;
 import entidades.Comentario;
 import entidades.Post;
 import entidades.Usuario;
-import excepciones.PersistenciaException;
 import interfaces.IComentarioDAO;
 import interfaces.IPostDAO;
 import interfaces.IUsuarioDAO;
@@ -20,11 +15,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.eclipse.tags.shaded.org.apache.bcel.generic.AALOAD;
 import persistencia.ComentarioDAO;
 import persistencia.PostDAO;
 import persistencia.UsuarioDAO;
