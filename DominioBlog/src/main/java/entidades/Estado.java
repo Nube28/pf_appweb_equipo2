@@ -1,16 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package entidades;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -18,31 +16,36 @@ import javax.persistence.Table;
  * @author USER
  */
 @Entity
-@Table(name="Estados")
+@Table(name = "Estados")
 public class Estado implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    @Column(name="nombre",nullable = false)
+
+    @Column(name = "nombre", nullable = false)
     private String nombre;
-    
-    @OneToOne(mappedBy="estado")
-    private Usuario usuario;
+
+    @OneToMany(mappedBy = "estado")
+    private List<Usuario> usuario = new ArrayList<>();
 
     public Estado() {
     }
 
-    public Estado(String nombre, Usuario usuario) {
+    public Estado(Long id, String nombre, List<Usuario> usuario) {
+        this.id = id;
         this.nombre = nombre;
         this.usuario = usuario;
     }
 
-    public Estado(Long id, String nombre, Usuario usuario) {
-        this.id = id;
+    public Estado(String nombre, List<Usuario> usuario) {
         this.nombre = nombre;
         this.usuario = usuario;
+    }
+
+    public Estado(Long id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
     }
 
     public Long getId() {
@@ -61,19 +64,13 @@ public class Estado implements Serializable {
         this.nombre = nombre;
     }
 
-    public Usuario getUsuario() {
+    public List<Usuario> getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(List<Usuario> usuario) {
         this.usuario = usuario;
     }
 
-    @Override
-    public String toString() {
-        return "Estado{" + "id=" + id + ", nombre=" + nombre + ", usuario=" + usuario + '}';
-    }
 
-    
-    
 }
